@@ -14,7 +14,10 @@ export const fetchCrowdinTranslation = async (lang: string | undefined, namespac
         const filesRes = await axios.get(`${API_BASE}/projects/${PROJECT_ID}/files`, { headers });
         const file = filesRes.data.data.find((f: any) => f.data.name === `${namespace}.json`);
 
-        if (!file) throw new Error(`Translation file for namespace "${namespace}" not found`);
+        if (!file) {
+            console.warn(`[Crowdin] No translation file found for namespace: ${namespace}`);
+            return
+        }
 
         // Step 2: Build the translation
         const buildRes = await axios.post(
