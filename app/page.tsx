@@ -1,4 +1,5 @@
-import styles from './page.module.css';
+import BaseHeader from '@/app/components/BaseHeader';
+import BaseLayout from '@/app/components/BaseLayout';
 import ClientHome from '@/app/components/ClientHome';
 
 export default async function Home() {
@@ -15,11 +16,14 @@ export default async function Home() {
   const transfersDetailsData = await transfersDetailsRes.json();
 
   return (
-    <div className={styles.page}>
-      <ClientHome
-        transfersListData={transfersListData}
-        transfersDetailsData={transfersDetailsData}
-      />
-    </div>
+    <>
+      <BaseHeader />
+      <BaseLayout>
+        <ClientHome
+          transfersListData={transfersListData}
+          transfersDetailsData={transfersDetailsData}
+        />
+      </BaseLayout>
+    </>
   );
 }
