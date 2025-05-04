@@ -10,7 +10,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Collapse,
   Box,
   useMediaQuery,
   Divider,
@@ -25,7 +24,7 @@ import WpIcon from '@/app/components/WpIcon';
 import { useSidebarStore } from '@/stores/useStore';
 import React from 'react';
 
-export default function BaseLayout({ children }) {
+export default function BaseLayout({ children }: any) {
   const { t } = useTranslation(['side_menu']);
   const isMobile = useMediaQuery('(max-width:768px)');
 
