@@ -1,3 +1,5 @@
+export * from './MenuIcon';
+export * from './DoubleChevronLeftIcon';
 export * from './DoubleChevronRightIcon';
 export * from './PowerIcon';
 export * from './CalendarIcon';

@@ -1,4 +1,6 @@
 import {
+  MenuIcon,
+  DoubleChevronLeftIcon,
   DoubleChevronRightIcon,
   PowerIcon,
   RevenueIcon,
@@ -20,6 +22,8 @@ import {
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const icons = {
+  menu: MenuIcon,
+  'double-chevron-left': DoubleChevronLeftIcon,
   'double-chevron-right': DoubleChevronRightIcon,
   power: PowerIcon,
   calendar: CalendarIcon,
