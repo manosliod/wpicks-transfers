@@ -1,6 +1,4 @@
-import { SVGProps } from 'react';
-
-export function SettingsIcon(props: SVGProps<SVGSVGElement>) {
+export function SettingsIcon() {
   return (
     <svg
       width="32"

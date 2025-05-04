@@ -1,6 +1,4 @@
-import { SVGProps } from 'react';
-
-export function DoubleChevronRightIcon(props: SVGProps<SVGSVGElement>) {
+export function DoubleChevronRightIcon() {
   return (
     <svg
       width="12"

@@ -1,6 +1,4 @@
-import { SVGProps } from 'react';
-
-export function RevenueIcon(props: SVGProps<SVGSVGElement>) {
+export function RevenueIcon() {
   return (
     <svg
       width="32"

@@ -1,6 +1,4 @@
-import { SVGProps } from 'react';
-
-export function SupportIcon(props: SVGProps<SVGSVGElement>) {
+export function SupportIcon() {
   return (
     <svg
       width="32"

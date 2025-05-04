@@ -1,6 +1,4 @@
-import { SVGProps } from 'react';
-
-export function PowerIcon(props: SVGProps<SVGSVGElement>) {
+export function PowerIcon() {
   return (
     <svg
       width="32"
