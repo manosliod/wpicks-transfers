@@ -2,10 +2,13 @@
 
 import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
+import { Typography } from '@mui/material';
+import { useFormattedTransfersList } from '@/app/shared/hooks/useHooks';
 import {
   useTransfersListStore,
   useTransfersDetailsStore,
 } from '@/app/shared/stores/useStore';
+import TransfersListTable from '@/app/components/transfers-list/TransfersListTable';
 
 interface TransfersListProps {
   transfersListData: any;
@@ -25,6 +28,7 @@ export default function TransfersList({
     (state) => state.setTransfersDetails
   );
 
+  const formattedTransfersList = useFormattedTransfersList(transfersListData);
   useEffect(() => {
     setTransfersList(transfersListData);
     setTransfersDetails(transfersDetailsData);
@@ -37,9 +41,11 @@ export default function TransfersList({
 
   return (
     <>
-      <div>
-        <h1>{t('common.transfer.plural')}</h1>
-      </div>
+      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+        {t('common.transfer.plural')}
+      </Typography>
+      {/*@ts-ignore*/}
+      <TransfersListTable formattedTransfersList={formattedTransfersList} />
     </>
   );
 }
