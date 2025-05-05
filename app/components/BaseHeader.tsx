@@ -22,7 +22,14 @@ export default function BaseHeader() {
         color: '#555',
       }}
     >
-      <Toolbar sx={{ justifyContent: isMobile ? 'space-between' : 'flex-end' }}>
+      <Toolbar
+        sx={{
+          '&.MuiToolbar-root': {
+            paddingInline: isMobile ? '20px' : '32px',
+          },
+          justifyContent: isMobile ? 'space-between' : 'flex-end',
+        }}
+      >
         {isMobile && (
           <Box>
             <IconButton

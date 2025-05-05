@@ -91,7 +91,7 @@ export default function BaseLayout({ children }: any) {
           sx: {
             color: '#2D3B4E7A',
             fontWeight: 'semibold',
-            width: isExpanded ? 260 : 82,
+            width: isExpanded ? 260 : 76,
             transition: 'width 0.3s',
             overflowX: 'hidden',
             borderTopRightRadius: '8px',
@@ -105,7 +105,7 @@ export default function BaseLayout({ children }: any) {
         <Card
           sx={{
             paddingBlock: '16px',
-            paddingInline: isExpanded ? '12px' : '16px',
+            paddingInline: '12px',
             background: isMobile ? '#F4F5F6' : null,
             borderBottomRightRadius: '8px',
             maxWidth: '100%',
@@ -119,20 +119,9 @@ export default function BaseLayout({ children }: any) {
                 <img src={WpLogo.src} alt="Logo" className="" />
               </Box>
             }
-            title={
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                {t('side_menu.title')}
-              </Typography>
-            }
+            title={<Typography variant="h6">{t('side_menu.title')}</Typography>}
             subheader={
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.9px',
-                }}
-              >
+              <Typography variant="caption">
                 {t('side_menu.subtitle')}
               </Typography>
             }
@@ -176,7 +165,7 @@ export default function BaseLayout({ children }: any) {
             flexDirection: 'column',
             flexGrow: 1,
             paddingBottom: '16px',
-            paddingInline: isExpanded ? '12px' : '16px',
+            paddingInline: '12px',
           }}
         >
           <List disablePadding>
@@ -200,13 +189,25 @@ export default function BaseLayout({ children }: any) {
                       minWidth: 32,
                       minHeight: 32,
                       display: 'flex',
+                      alignItems: 'center',
                       justifyContent: 'center',
                       marginInlineEnd: '16px',
                     }}
                   >
                     {item.icon}
                   </ListItemIcon>
-                  {isExpanded && <ListItemText primary={item.label} />}
+                  {isExpanded && (
+                    <ListItemText
+                      primary={
+                        <Typography
+                          variant="subtitle1"
+                          sx={{ textWrap: 'nowrap' }}
+                        >
+                          {item.label}
+                        </Typography>
+                      }
+                    />
+                  )}
                 </ListItemButton>
               </Box>
             ))}
@@ -224,14 +225,33 @@ export default function BaseLayout({ children }: any) {
                   borderRadius: '4px',
                 }}
               >
-                <ListItemIcon sx={{ minWidth: 40, padding: 0 }}>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 40,
+                    padding: 0,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   {isExpanded ? (
                     <WpIcon name="double-chevron-left" />
                   ) : (
                     <WpIcon name="double-chevron-right" />
                   )}
                 </ListItemIcon>
-                {isExpanded && <ListItemText primary="Collapse menu" />}
+                {isExpanded && (
+                  <ListItemText
+                    primary={
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ textWrap: 'nowrap' }}
+                      >
+                        {t('side_menu.collapse_menu')}
+                      </Typography>
+                    }
+                  />
+                )}
               </ListItemButton>
             </List>
           ) : (
@@ -246,9 +266,9 @@ export default function BaseLayout({ children }: any) {
         flexGrow={1}
         onClick={closeSidebar}
         sx={{
-          ml: isMobile ? 0 : isExpanded ? '260px' : '82px',
+          ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
           transition: 'margin-left 0.3s',
-          p: 3,
+          padding: isMobile ? '16px 20px' : '36px 32px',
         }}
       >
         {children}
