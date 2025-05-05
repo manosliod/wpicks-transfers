@@ -269,9 +269,18 @@ export default function BaseLayout({ children }: any) {
           ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
           transition: 'margin-left 0.3s',
           padding: isMobile ? '16px 20px' : '36px 32px',
+          width: !isMobile ? 'calc(100vw - 92px)' : null,
         }}
       >
-        {children}
+        <Box
+          sx={{
+            maxWidth: 'fit-content',
+            marginInline: 'auto',
+            overflowX: 'auto',
+          }}
+        >
+          {children}
+        </Box>
       </Box>
     </Box>
   );
