@@ -8,16 +8,22 @@ import {
   StatisticsIcon,
   SupportIcon,
   SettingsIcon,
+  ArrivingIcon,
+  DepartingIcon,
+  TransferIcon,
+  BabyIcon,
+  CarIcon,
+  EarlyCheckInIcon,
+  LateCheckOutIcon,
 } from './icons/useIcons';
 
-// import  BurgerIcon from '@/assets/icons/burger.svg';
 // import  BabyFaceIcon from '@/assets/icons/baby-face.svg';
 // import  CarIcon from '@/assets/icons/car.svg';
 // import  SunIcon from '@/assets/icons/sun.svg';
 // import  MoonIcon from '@/assets/icons/moon.svg';
 // import  EntranceIcon from '@/assets/icons/entrance.svg';
-// import  ExitIcon } from '@/assets/icons/exit.svg';
-// import  BuildingIcon } from '@/assets/icons/building.svg';
+// import  ExitIcon from '@/assets/icons/exit.svg';
+// import  BuildingIcon from '@/assets/icons/building.svg';
 
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
@@ -31,17 +37,16 @@ const icons = {
   revenue: RevenueIcon,
   settings: SettingsIcon,
   support: SupportIcon,
-  // burger: BurgerIcon,
-  // 'baby-face': BabyFaceIcon,
-  // car: CarIcon,
-  // sun: SunIcon,
-  // moon: MoonIcon,
-  // entrance: EntranceIcon,
-  // exit: ExitIcon,
-  // building: BuildingIcon,
+  arrival: ArrivingIcon,
+  departure: DepartingIcon,
+  transfer: TransferIcon,
+  babies: BabyIcon,
+  return_transfer: CarIcon,
+  early_checkin: EarlyCheckInIcon,
+  late_checkout: LateCheckOutIcon,
 };
 
-interface WpIconProps extends SvgIconProps {
+export interface WpIconProps extends SvgIconProps {
   name: keyof typeof icons;
 }
 
