@@ -1,3 +1,4 @@
+export * from './DashIcon';
 export * from './MenuIcon';
 export * from './DoubleChevronLeftIcon';
 export * from './DoubleChevronRightIcon';

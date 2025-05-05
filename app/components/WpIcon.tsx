@@ -1,4 +1,5 @@
 import {
+  DashIcon,
   MenuIcon,
   DoubleChevronLeftIcon,
   DoubleChevronRightIcon,
@@ -28,6 +29,7 @@ import {
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const icons = {
+  dash: DashIcon,
   menu: MenuIcon,
   'double-chevron-left': DoubleChevronLeftIcon,
   'double-chevron-right': DoubleChevronRightIcon,
