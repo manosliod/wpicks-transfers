@@ -1,44 +1,21 @@
 'use client';
-import '@/lib/i18n';
 
-import { useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
-import {
-  useTransfersListStore,
-  useTransfersDetailsStore,
-} from '@/stores/useStore';
+import '@/lib/i18n';
+import { ReactNode, useEffect } from 'react';
+import { usePageStore } from '@/app/shared/stores/pageStore';
+import { useMediaQuery } from '@mui/material';
 
 interface ClientHomeProps {
-  transfersListData: any;
-  transfersDetailsData: any;
+  children?: ReactNode;
 }
 
-export default function ClientHome({
-  transfersListData,
-  transfersDetailsData,
-}: ClientHomeProps) {
-  const { t } = useTranslation(['common', 'guest']);
-
-  const setTransfersList = useTransfersListStore(
-    (state) => state.setTransfersList
-  );
-  const setTransfersDetails = useTransfersDetailsStore(
-    (state) => state.setTransfersDetails
-  );
+export default function ClientHome({ children }: ClientHomeProps) {
+  const { setIsMobile } = usePageStore();
+  const isMobileQuery = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
-    setTransfersList(transfersListData);
-    setTransfersDetails(transfersDetailsData);
-  }, [
-    transfersListData,
-    transfersDetailsData,
-    setTransfersList,
-    setTransfersDetails,
-  ]);
+    setIsMobile(isMobileQuery);
+  }, [isMobileQuery, setIsMobile]);
 
-  return (
-    <div>
-      <h1>{t('common.transfer.plural')}</h1>
-    </div>
-  );
+  return <>{children}</>;
 }

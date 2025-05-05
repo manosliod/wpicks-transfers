@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Box, useMediaQuery } from '@mui/material';
-import { useSidebarStore } from '@/stores/sidebarStore';
+import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
+import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
 
 import SearchIcon from '@mui/icons-material/Search';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
@@ -9,8 +9,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import WpIcon from '@/app/components/WpIcon';
 
 export default function BaseHeader() {
-  const isMobile = useMediaQuery('(max-width:768px)');
-
+  const { isMobile } = usePageStore();
   const { openDrawer } = useSidebarStore();
 
   return (
@@ -18,6 +17,7 @@ export default function BaseHeader() {
       position="static"
       elevation={0}
       sx={{
+        borderBottom: '2px solid #2D3B4E1A',
         backgroundColor: '#fff',
         color: '#555',
       }}

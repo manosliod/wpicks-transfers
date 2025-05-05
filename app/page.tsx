@@ -1,6 +1,7 @@
 import BaseHeader from '@/app/components/BaseHeader';
 import BaseLayout from '@/app/components/BaseLayout';
 import ClientHome from '@/app/components/ClientHome';
+import TransfersList from '@/app/components/transfers-list/TransfersList';
 
 export default async function Home() {
   const [transfersListRes, transfersDetailsRes] = await Promise.all([
@@ -17,13 +18,15 @@ export default async function Home() {
 
   return (
     <>
-      <BaseHeader />
-      <BaseLayout>
-        <ClientHome
-          transfersListData={transfersListData}
-          transfersDetailsData={transfersDetailsData}
-        />
-      </BaseLayout>
+      <ClientHome>
+        <BaseHeader />
+        <BaseLayout>
+          <TransfersList
+            transfersListData={transfersListData}
+            transfersDetailsData={transfersDetailsData}
+          />
+        </BaseLayout>
+      </ClientHome>
     </>
   );
 }
