@@ -1,0 +1,1 @@
+export { useStopPropagation } from './useStopPropagation';
