@@ -9,7 +9,7 @@ export function useFormattedTransfersList(transfersListData: any) {
   return useMemo(() => {
     return Object.entries(groupedTransfersListData).map(([dateKey, items]) => {
       const date = new Date(dateKey);
-      let formattedDate = '';
+      let formattedDate: string;
 
       if (isToday(date)) {
         formattedDate = 'Today';
