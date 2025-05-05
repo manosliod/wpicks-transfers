@@ -56,17 +56,48 @@ const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
 };
 
 interface TransferItem {
-  datetime: string;
+  category: string;
+  traveler_photo: string;
+  traveler_first_name: string;
+  traveler_last_name: string;
+  property_title: string;
+  datetime: string; // ISO date string
+  location_title: string;
+  babies?: boolean;
+  return_transfer?: boolean;
+  early_checkin?: boolean;
+  late_checkout?: boolean;
 }
 
 interface FormattedTransfer {
   formattedDate: string;
-  items: [];
+  items: TransferItem[];
 }
 
 const TransfersListTableBody: React.FC<{
   formattedTransfersList: FormattedTransfer[];
 }> = ({ formattedTransfersList }) => {
+  type OpportunityKey =
+    | 'babies'
+    | 'return_transfer'
+    | 'early_checkin'
+    | 'late_checkout';
+  const opportunityKeys: OpportunityKey[] = [
+    'babies',
+    'return_transfer',
+    'early_checkin',
+    'late_checkout',
+  ];
+
+  const getWpIconName = (category: string): WpIconProps['name'] => {
+    const lowerCaseCategory = category.toLowerCase();
+    if (lowerCaseCategory === 'in city') {
+      return 'transfer' as WpIconProps['name'];
+    } else {
+      return lowerCaseCategory as WpIconProps['name'];
+    }
+  };
+
   return (
     <TableBody>
       {formattedTransfersList.map(({ formattedDate, items }, index) => (
@@ -92,15 +123,7 @@ const TransfersListTableBody: React.FC<{
           {items.map((item, index) => (
             <TableRow key={index}>
               <CustomBodyCell>
-                <WpIcon
-                  name={
-                    !['arrival', 'departure'].includes(
-                      item?.category.toLowerCase()
-                    )
-                      ? 'transfer'
-                      : item?.category.toLowerCase()
-                  }
-                />
+                <WpIcon name={getWpIconName(item?.category || '')} />
               </CustomBodyCell>
               <CustomBodyCell>
                 <Box
@@ -124,17 +147,18 @@ const TransfersListTableBody: React.FC<{
               <CustomBodyCell label={item?.location_title} />
               <CustomBodyCell>
                 <Box display="flex" gap={1}>
-                  {[
-                    'babies',
-                    'return_transfer',
-                    'early_checkin',
-                    'late_checkout',
-                  ].map((key) =>
-                    item[key] ? (
-                      <OpportunityIcon key={key}>
-                        <WpIcon name={key as WpIconProps['name']} />
-                      </OpportunityIcon>
-                    ) : null
+                  {opportunityKeys.some((key) => item[key]) ? (
+                    opportunityKeys.map((key) =>
+                      item[key] ? (
+                        <OpportunityIcon key={key}>
+                          <WpIcon name={key as WpIconProps['name']} />
+                        </OpportunityIcon>
+                      ) : null
+                    )
+                  ) : (
+                    <OpportunityIcon key="dash">
+                      <WpIcon name="dash" />
+                    </OpportunityIcon>
                   )}
                 </Box>
               </CustomBodyCell>
