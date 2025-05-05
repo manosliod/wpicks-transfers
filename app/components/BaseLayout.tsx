@@ -1,9 +1,11 @@
 'use client';
-import '@/lib/i18n';
-import WpLogo from '@/assets/logos/Logo.png';
-import { useTranslation } from 'next-i18next';
 
-import CloseIcon from '@mui/icons-material/Close';
+import '@/lib/i18n';
+import React from 'react';
+import { useTranslation } from 'next-i18next';
+import { useStopPropagation } from '@/app/shared/hooks/useHooks';
+import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
+
 import {
   Drawer,
   List,
@@ -11,7 +13,6 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
-  useMediaQuery,
   Divider,
   Card,
   CardHeader,
@@ -21,12 +22,12 @@ import {
 } from '@mui/material';
 
 import WpIcon from '@/app/components/WpIcon';
-import { useSidebarStore } from '@/stores/useStore';
-import React from 'react';
+import WpLogo from '@/assets/logos/Logo.png';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function BaseLayout({ children }: any) {
   const { t } = useTranslation(['side_menu']);
-  const isMobile = useMediaQuery('(max-width:768px)');
+  const { isMobile } = usePageStore();
 
   const {
     selectedKey,
@@ -38,12 +39,13 @@ export default function BaseLayout({ children }: any) {
     closeDrawer,
   } = useSidebarStore();
 
-  const isExpanded = isMobile ? isDrawerOpen : isLocked;
+  const stopPropagationAndCloseDrawer = useStopPropagation(closeDrawer);
 
-  const toggleSidebar = () => {
-    if (isExpanded) closeSidebar();
-    else openSidebar();
-  };
+  const isExpanded = React.useMemo(
+    () => (isMobile ? isDrawerOpen : isLocked),
+    [isMobile, isDrawerOpen, isLocked]
+  );
+
   const openSidebar = () => {
     if (isMobile) openDrawer();
     else setLocked(true);
@@ -62,7 +64,6 @@ export default function BaseLayout({ children }: any) {
     {
       label: t('side_menu.scheduled'),
       icon: <WpIcon name="calendar" />,
-      key: 'scheduled',
     },
     {
       label: t('side_menu.statistics'),
@@ -75,7 +76,6 @@ export default function BaseLayout({ children }: any) {
     {
       label: t('side_menu.settings'),
       icon: <WpIcon name="settings" />,
-      key: 'settings',
     },
   ];
 
@@ -86,19 +86,19 @@ export default function BaseLayout({ children }: any) {
         variant={isMobile ? 'temporary' : 'permanent'}
         open={isExpanded}
         onClick={openSidebar}
-        onClose={closeSidebar}
+        onClose={stopPropagationAndCloseDrawer}
         PaperProps={{
           sx: {
             color: '#2D3B4E7A',
             fontWeight: 'semibold',
             width: isExpanded ? 260 : 82,
-
             transition: 'width 0.3s',
             overflowX: 'hidden',
             borderTopRightRadius: '8px',
             borderBottomRightRadius: '8px',
             boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
             border: 0,
+            borderRight: '1px solid #2D3B4E1A',
           },
         }}
       >
@@ -142,7 +142,7 @@ export default function BaseLayout({ children }: any) {
                   size="small"
                   edge="end"
                   color="inherit"
-                  onClick={closeSidebar}
+                  onClick={stopPropagationAndCloseDrawer}
                   sx={{
                     padding: 0,
                     minWidth: '34px',
@@ -183,7 +183,8 @@ export default function BaseLayout({ children }: any) {
             {menuItems.map((item, index) => (
               <Box key={index}>
                 <ListItemButton
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     setSelectedKey(item.label);
                     closeSidebar();
                   }}
@@ -217,10 +218,7 @@ export default function BaseLayout({ children }: any) {
           {!isMobile ? (
             <List>
               <ListItemButton
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSidebar();
-                }}
+                onClick={stopPropagationAndCloseDrawer}
                 sx={{
                   padding: isExpanded ? '12px 16px' : '8px',
                   borderRadius: '4px',
