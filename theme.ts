@@ -6,10 +6,50 @@ const theme = createTheme({
   typography: {
     fontFamily: 'var(--font-open-sans), Arial, Helvetica, sans-serif',
     allVariants: {
-      fontWeight: 400,
       fontSize: '15px',
       lineHeight: 1,
       letterSpacing: '0px',
+    },
+    h1: {
+      fontSize: '32px',
+      fontWeight: 700,
+    },
+    h2: {
+      fontSize: '30px',
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: '28px',
+      fontWeight: 700,
+    },
+    h4: {
+      fontSize: '26px',
+      fontWeight: 700,
+    },
+    h5: {
+      fontSize: '24px',
+      fontWeight: 700,
+    },
+    h6: {
+      fontSize: '22px',
+      fontWeight: 700,
+    },
+    body1: {
+      fontSize: '18px',
+    },
+    body2: {
+      fontSize: '16px',
+    },
+    subtitle1: {
+      fontSize: '14px',
+    },
+    subtitle2: {
+      fontSize: '12px',
+    },
+    caption: {
+      fontSize: '10px',
+      letterSpacing: '0.9px',
+      textTransform: 'uppercase',
     },
   },
   components: {
