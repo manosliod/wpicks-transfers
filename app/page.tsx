@@ -1,3 +1,5 @@
+import { safeFetch } from '@/lib/safeFetch';
+
 export const dynamic = 'force-dynamic';
 
 import BaseHeader from '@/app/components/BaseHeader';
@@ -7,17 +9,14 @@ import TransfersList from '@/app/components/transfers-list/TransfersList';
 
 export default async function Home() {
   console.log(process.env.API_BASE_URL);
-  const [transfersListRes, transfersDetailsRes] = await Promise.all([
-    fetch(process.env.API_BASE_URL + '/api/transfers-list', {
+  const [transfersListData, transfersDetailsData] = await Promise.all([
+    safeFetch(process.env.API_BASE_URL + '/api/transfers-list', {
       next: { revalidate: 60 },
     }),
-    fetch(process.env.API_BASE_URL + '/api/transfers-details', {
+    safeFetch(process.env.API_BASE_URL + '/api/transfers-details', {
       next: { revalidate: 60 },
     }),
   ]);
-
-  const transfersListData = await transfersListRes.json();
-  const transfersDetailsData = await transfersDetailsRes.json();
 
   return (
     <>
