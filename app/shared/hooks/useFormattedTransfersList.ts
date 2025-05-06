@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'next-i18next';
 import { format, isToday, isTomorrow } from 'date-fns';
-import { useGroupByDate } from './useGroupByDate'; // Import the other hook
+import { useGroupByDate } from './useGroupByDate';
 
 export function useFormattedTransfersList(transfersListData: any) {
+  const { t } = useTranslation();
   // Use the grouping hook to group by date
   const groupedTransfersListData = useGroupByDate(transfersListData);
 
@@ -12,11 +14,11 @@ export function useFormattedTransfersList(transfersListData: any) {
       let formattedDate: string;
 
       if (isToday(date)) {
-        formattedDate = 'Today';
+        formattedDate = t('common:today');
       } else if (isTomorrow(date)) {
-        formattedDate = 'Tomorrow';
+        formattedDate = t('common:tomorrow');
       } else {
-        formattedDate = format(date, 'iiii, d MMMM'); // Format as 'Monday, 5 May'
+        formattedDate = format(date, 'iiii, d MMMM');
       }
 
       return { formattedDate, items };
