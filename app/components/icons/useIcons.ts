@@ -10,7 +10,7 @@ export * from './SettingsIcon';
 export * from './SupportIcon';
 export * from './ArrivingIcon';
 export * from './DepartingIcon';
-export * from './TransferIcon';
+export * from './InCityIcon';
 export * from './BabyIcon';
 export * from './CarIcon';
 export * from './EarlyCheckInIcon';
