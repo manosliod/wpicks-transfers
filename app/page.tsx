@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import BaseHeader from '@/app/components/BaseHeader';
 import BaseLayout from '@/app/components/BaseLayout';
 import ClientHome from '@/app/components/ClientHome';
