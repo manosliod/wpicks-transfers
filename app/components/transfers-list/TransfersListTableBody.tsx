@@ -10,9 +10,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
-import WpIcon from '@/app/components/WpIcon';
 import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
-import { mapTransferCategoryToIconName } from '@/app/shared/helpers/mapTransferCategoryToIconName';
 import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
 
 interface CustomBodyCellProps extends TableCellProps {
