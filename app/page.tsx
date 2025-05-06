@@ -8,7 +8,6 @@ import ClientHome from '@/app/components/ClientHome';
 import TransfersList from '@/app/components/transfers-list/TransfersList';
 
 export default async function Home() {
-  console.log(process.env.API_BASE_URL);
   const [transfersListRes, transfersDetailsRes] = await Promise.all([
     fetch(process.env.API_BASE_URL + '/api/transfers-list', {
       next: { revalidate: 60 },
