@@ -24,8 +24,8 @@ export default async function Home() {
   return (
     <Suspense fallback={<Loading />}>
       <ClientHome
-        transfersListData={transfersListData}
-        transfersDetailsData={transfersDetailsData}
+        transfersListData={transfersListData?.transfersList}
+        transfersDetailsData={transfersDetailsData?.transfersDetails}
       >
         <BaseHeader />
         <BaseLayout>
