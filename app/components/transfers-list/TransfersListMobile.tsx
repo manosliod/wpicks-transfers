@@ -1,11 +1,40 @@
 import React from 'react';
+import { Box, Typography } from '@mui/material';
 import type { FormattedTransfers } from '@/app/components/transfers-list/TransfersListTableBody';
 
 const TransfersListMobile: React.FC<{
   formattedTransfersList: FormattedTransfers[];
 }> = ({ formattedTransfersList }) => {
-  return formattedTransfersList.map(
-    ({ formattedDate, items }, index) => formattedDate
+  return (
+    <Box
+      sx={{
+        gap: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '320px',
+      }}
+    >
+      {formattedTransfersList.map(({ formattedDate, items }, index) => (
+        <Box
+          sx={{
+            background: '#2D3B4E0A',
+            borderRadius: '32px',
+            padding: '8px 12px',
+            minHeight: '32px',
+            flexGrow: 1,
+            flexShrink: 1,
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            fontWeight="bold"
+            sx={{ color: '#2D3B4E66', width: '100%' }}
+          >
+            {formattedDate}
+          </Typography>
+        </Box>
+      ))}
+    </Box>
   );
 };
 
