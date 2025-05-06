@@ -22,7 +22,7 @@ export default async function Home() {
       <ClientHome>
         <BaseHeader />
         <BaseLayout>
-          {/*<TransfersList transfersListData={null} transfersDetailsData={null} />*/}
+          <TransfersList transfersListData={null} transfersDetailsData={null} />
         </BaseLayout>
       </ClientHome>
     </>
