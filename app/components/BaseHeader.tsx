@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
+import { t } from 'i18next';
+import { AppBar, Toolbar, IconButton, Box, Typography } from '@mui/material';
 import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -31,17 +32,28 @@ export default function BaseHeader() {
         }}
       >
         {isMobile && (
-          <Box>
-            <IconButton
-              size="medium"
-              edge="end"
-              color="inherit"
-              onClick={openDrawer}
-              sx={{ marginInlineEnd: '12px' }}
-            >
-              <WpIcon name="menu" />
-            </IconButton>
-          </Box>
+          <>
+            <Box>
+              <IconButton
+                size="medium"
+                edge="end"
+                color="inherit"
+                onClick={openDrawer}
+                sx={{ marginInlineEnd: '12px' }}
+              >
+                <WpIcon name="menu" />
+              </IconButton>
+            </Box>
+            <Box>
+              <Typography
+                variant="body2"
+                fontWeight="bold"
+                sx={{ color: '#2D3B4E' }}
+              >
+                {t('common:transfer.plural')} {t('transfers:list')}
+              </Typography>
+            </Box>
+          </>
         )}
         <Box sx={{ justifyContent: 'flex-end' }}>
           {!isMobile ? (
