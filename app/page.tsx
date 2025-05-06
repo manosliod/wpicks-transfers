@@ -23,13 +23,13 @@ export default async function Home() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <ClientHome>
+      <ClientHome
+        transfersListData={transfersListData}
+        transfersDetailsData={transfersDetailsData}
+      >
         <BaseHeader />
         <BaseLayout>
-          <TransfersList
-            transfersListData={transfersListData}
-            transfersDetailsData={transfersDetailsData}
-          />
+          <TransfersList />
         </BaseLayout>
       </ClientHome>
     </Suspense>
