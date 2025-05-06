@@ -1,4 +1,5 @@
 import React from 'react';
+import { isToday, isTomorrow, parseISO } from 'date-fns';
 import {
   TableRow,
   TableCell,
@@ -9,6 +10,7 @@ import {
   Avatar,
 } from '@mui/material';
 import { format } from 'date-fns';
+import { useTranslation } from 'next-i18next';
 import type { WpIconProps } from '@/app/components/WpIcon';
 import WpIcon from '@/app/components/WpIcon';
 import OpportunityIcon from '@/app/components/transfers-list/partials/OpportunityIcon';
@@ -48,7 +50,16 @@ const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
         {children ? (
           children
         ) : (
-          <Typography variant="subtitle1">{label}</Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {label}
+          </Typography>
         )}
       </Box>
     </TableCell>
@@ -69,14 +80,16 @@ interface TransferItem {
   late_checkout?: boolean;
 }
 
-interface FormattedTransfer {
+export interface FormattedTransfers {
   formattedDate: string;
   items: TransferItem[];
 }
 
 const TransfersListTableBody: React.FC<{
-  formattedTransfersList: FormattedTransfer[];
+  formattedTransfersList: FormattedTransfers[];
 }> = ({ formattedTransfersList }) => {
+  const { t } = useTranslation('common');
+
   type OpportunityKey =
     | 'babies'
     | 'return_transfer'
@@ -113,7 +126,10 @@ const TransfersListTableBody: React.FC<{
             >
               <Typography
                 variant="caption"
-                sx={{ fontWeight: 600, color: '#858c96' }}
+                sx={{
+                  fontWeight: 600,
+                  color: '#858c96',
+                }}
               >
                 {formattedDate}
               </Typography>
@@ -131,19 +147,37 @@ const TransfersListTableBody: React.FC<{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   <Avatar
                     src={item?.traveler_photo}
                     sx={{ marginInlineEnd: '12px' }}
                   />
-                  <Typography variant="subtitle1">
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     {item?.traveler_first_name} {item?.traveler_last_name}
                   </Typography>
                 </Box>
               </CustomBodyCell>
               <CustomBodyCell label={item?.property_title} />
-              <CustomBodyCell label={format(item?.datetime, 'iiii, d MMMM')} />
+              <CustomBodyCell
+                label={
+                  isToday(parseISO(item?.datetime))
+                    ? `${t('common:common.today')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
+                    : isTomorrow(parseISO(item?.datetime))
+                      ? `${t('common:common.tomorrow')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
+                      : format(parseISO(item?.datetime), 'iii, d MMMM')
+                }
+              />
               <CustomBodyCell label={item?.location_title} />
               <CustomBodyCell>
                 <Box display="flex" gap={1}>

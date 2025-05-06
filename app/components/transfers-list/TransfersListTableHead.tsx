@@ -27,6 +27,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
   return (
     <TableCell
       {...props}
+      width={width}
       sx={{
         padding: '12px 8px',
         border: 'unset',
@@ -45,7 +46,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
         ...props?.sx,
       }}
     >
-      <Box sx={{ display: 'flex', position: 'relative', width: width }}>
+      <Box sx={{ display: 'flex', position: 'relative', width: '100%' }}>
         <Typography
           variant="caption"
           sx={{ fontSize: '11px', fontWeight: 600 }}
@@ -61,7 +62,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
               position: 'absolute',
               top: '50%',
               right: '0',
-              transform: 'translate(-8px, -50%)',
+              transform: 'translate(-6px, -50%)',
               backgroundColor: '#fbbf24',
               color: '#fff',
               fontWeight: 600,
@@ -88,7 +89,7 @@ const TransfersListTableHead: React.FC = () => {
       <TableRow>
         <CustomHeaderCell
           label={t('transfers.list_table.status')}
-          width={'45px'}
+          width={'70px'}
         />
         <CustomHeaderCell
           label={t('transfers.list_table.traveller')}
@@ -96,19 +97,19 @@ const TransfersListTableHead: React.FC = () => {
         />
         <CustomHeaderCell
           label={t('transfers.list_table.property')}
-          width={'120px'}
+          width={'170px'}
         />
         <CustomHeaderCell
           label={`${t('transfers.list_table.arrive.noun')}/${t('transfers.list_table.depart.noun')}`}
-          width={'165px'}
+          width={'180px'}
         />
         <CustomHeaderCell
           label={`${t('common:common.from')}/${t('common:common.to')}`}
-          width={'155px'}
+          width={'150px'}
         />
         <CustomHeaderCell
           label={t('transfers.list_table.opportunities')}
-          width={'150px'}
+          width={'170px'}
           showNewBadge
         />
       </TableRow>
