@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Typography } from '@mui/material';
 import { useFormattedTransfersList } from '@/app/shared/hooks/useHooks';
@@ -10,34 +9,12 @@ import {
 } from '@/app/shared/stores/useStore';
 import TransfersListTable from '@/app/components/transfers-list/TransfersListTable';
 
-interface TransfersListProps {
-  transfersListData: any;
-  transfersDetailsData: any;
-}
-
-export default function TransfersList({
-  transfersListData,
-  transfersDetailsData,
-}: TransfersListProps) {
+export default function TransfersList() {
   const { t } = useTranslation();
+  const { transfersList } = useTransfersListStore();
+  const { transfersDetails } = useTransfersDetailsStore();
 
-  const setTransfersList = useTransfersListStore(
-    (state) => state.setTransfersList
-  );
-  const setTransfersDetails = useTransfersDetailsStore(
-    (state) => state.setTransfersDetails
-  );
-
-  const formattedTransfersList = useFormattedTransfersList(transfersListData);
-  useEffect(() => {
-    setTransfersList(transfersListData);
-    setTransfersDetails(transfersDetailsData);
-  }, [
-    transfersListData,
-    transfersDetailsData,
-    setTransfersList,
-    setTransfersDetails,
-  ]);
+  const formattedTransfersList = useFormattedTransfersList(transfersList);
 
   return (
     <>

@@ -1,34 +1,20 @@
-import { safeFetch } from '@/lib/safeFetch';
-
 export const dynamic = 'auto';
 
+import Ssr from '@/app/components/Ssr';
 import BaseHeader from '@/app/components/BaseHeader';
 import BaseLayout from '@/app/components/BaseLayout';
 import ClientHome from '@/app/components/ClientHome';
 import TransfersList from '@/app/components/transfers-list/TransfersList';
 
 export default async function Home() {
-  console.log(process.env.API_BASE_URL);
-  const [transfersListData, transfersDetailsData] = await Promise.all([
-    safeFetch(process.env.API_BASE_URL + '/api/transfers-list', {
-      next: { revalidate: 60 },
-    }),
-    safeFetch(process.env.API_BASE_URL + '/api/transfers-details', {
-      next: { revalidate: 60 },
-    }),
-  ]);
-
   return (
-    <>
+    <Ssr>
       <ClientHome>
         <BaseHeader />
         <BaseLayout>
-          <TransfersList
-            transfersListData={transfersListData}
-            transfersDetailsData={transfersDetailsData}
-          />
+          <TransfersList />
         </BaseLayout>
       </ClientHome>
-    </>
+    </Ssr>
   );
 }
