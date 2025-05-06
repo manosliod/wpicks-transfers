@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import type { FormattedTransfers } from '@/app/components/transfers-list/TransfersListTableBody';
+import WpIcon from '@/app/components/WpIcon';
 
 const TransfersListMobile: React.FC<{
   formattedTransfersList: FormattedTransfers[];
@@ -23,12 +24,19 @@ const TransfersListMobile: React.FC<{
             minHeight: '32px',
             flexGrow: 1,
             flexShrink: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
           }}
         >
+          <WpIcon name="calendar" />
           <Typography
             variant="subtitle1"
             fontWeight="bold"
-            sx={{ color: '#2D3B4E66', width: '100%' }}
+            sx={{
+              color: '#2D3B4E66',
+              width: '100%',
+            }}
           >
             {formattedDate}
           </Typography>
