@@ -26,7 +26,7 @@ import WpLogo from '@/assets/logos/Logo.png';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function BaseLayout({ children }: any) {
-  const { t } = useTranslation(['side_menu']);
+  const { t } = useTranslation();
   const { isMobile } = usePageStore();
 
   const {
@@ -58,23 +58,23 @@ export default function BaseLayout({ children }: any) {
 
   const menuItems = [
     {
-      label: t('side_menu.live_view'),
+      label: t('side_menu:live_view'),
       icon: <WpIcon name="power" />,
     },
     {
-      label: t('side_menu.scheduled'),
+      label: t('side_menu:scheduled'),
       icon: <WpIcon name="calendar" />,
     },
     {
-      label: t('side_menu.statistics'),
+      label: t('side_menu:statistics'),
       icon: <WpIcon name="statistics" />,
     },
     {
-      label: t('side_menu.revenue'),
+      label: t('side_menu:revenue'),
       icon: <WpIcon name="revenue" />,
     },
     {
-      label: t('side_menu.settings'),
+      label: t('side_menu:settings'),
       icon: <WpIcon name="settings" />,
     },
   ];
@@ -119,10 +119,10 @@ export default function BaseLayout({ children }: any) {
                 <img src={WpLogo.src} alt="Logo" className="" />
               </Box>
             }
-            title={<Typography variant="h6">{t('side_menu.title')}</Typography>}
+            title={<Typography variant="h6">{t('side_menu:title')}</Typography>}
             subheader={
               <Typography variant="caption">
-                {t('side_menu.subtitle')}
+                {t('side_menu:subtitle')}
               </Typography>
             }
             action={
@@ -247,7 +247,7 @@ export default function BaseLayout({ children }: any) {
                         variant="subtitle1"
                         sx={{ textWrap: 'nowrap' }}
                       >
-                        {t('side_menu.collapse_menu')}
+                        {t('side_menu:collapse_menu')}
                       </Typography>
                     }
                   />
@@ -255,7 +255,7 @@ export default function BaseLayout({ children }: any) {
               </ListItemButton>
             </List>
           ) : (
-            <Button variant="contained">{t('side_menu.logout')} </Button>
+            <Button variant="contained">{t('side_menu:logout')} </Button>
           )}
         </Box>
       </Drawer>
@@ -269,7 +269,9 @@ export default function BaseLayout({ children }: any) {
           ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
           transition: 'margin-left 0.3s',
           padding: isMobile ? '16px 20px' : '36px 32px',
-          width: !isMobile ? 'calc(100vw - 92px)' : null,
+          width: !isMobile
+            ? `calc(100vw - ${isExpanded ? '275px' : '92px'})`
+            : null,
         }}
       >
         <Box

@@ -22,7 +22,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
   width,
   ...props
 }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation();
 
   return (
     <TableCell
@@ -56,7 +56,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
 
         {showNewBadge && (
           <Chip
-            label={t('common.new')}
+            label={t('common:new')}
             size="small"
             sx={{
               position: 'absolute',
@@ -82,33 +82,33 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
 };
 
 const TransfersListTableHead: React.FC = () => {
-  const { t } = useTranslation(['transfers', 'common']);
+  const { t } = useTranslation();
 
   return (
     <TableHead sx={{ border: 'unset' }}>
       <TableRow>
         <CustomHeaderCell
-          label={t('transfers.list_table.status')}
+          label={t('transfers:list_table.status')}
           width={'70px'}
         />
         <CustomHeaderCell
-          label={t('transfers.list_table.traveller')}
+          label={t('transfers:list_table.traveller')}
           width={'200px'}
         />
         <CustomHeaderCell
-          label={t('transfers.list_table.property')}
+          label={t('transfers:list_table.property')}
           width={'170px'}
         />
         <CustomHeaderCell
-          label={`${t('transfers.list_table.arrive.noun')}/${t('transfers.list_table.depart.noun')}`}
+          label={`${t('transfers:list_table.arrive.noun')}/${t('transfers:list_table.depart.noun')}`}
           width={'180px'}
         />
         <CustomHeaderCell
-          label={`${t('common:common.from')}/${t('common:common.to')}`}
+          label={`${t('common:from')}/${t('common:to')}`}
           width={'150px'}
         />
         <CustomHeaderCell
-          label={t('transfers.list_table.opportunities')}
+          label={t('transfers:list_table.opportunities')}
           width={'170px'}
           showNewBadge
         />

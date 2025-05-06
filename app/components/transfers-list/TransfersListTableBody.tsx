@@ -88,7 +88,7 @@ export interface FormattedTransfers {
 const TransfersListTableBody: React.FC<{
   formattedTransfersList: FormattedTransfers[];
 }> = ({ formattedTransfersList }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation();
 
   type OpportunityKey =
     | 'babies'

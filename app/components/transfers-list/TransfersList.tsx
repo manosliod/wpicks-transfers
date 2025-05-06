@@ -19,7 +19,7 @@ export default function TransfersList({
   transfersListData,
   transfersDetailsData,
 }: TransfersListProps) {
-  const { t } = useTranslation(['common', 'guest']);
+  const { t } = useTranslation();
 
   const setTransfersList = useTransfersListStore(
     (state) => state.setTransfersList
@@ -42,7 +42,7 @@ export default function TransfersList({
   return (
     <>
       <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-        {t('common.transfer.plural')}
+        {t('common:transfer.plural')}
       </Typography>
       {/*@ts-ignore*/}
       <TransfersListTable formattedTransfersList={formattedTransfersList} />

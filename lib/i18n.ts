@@ -11,7 +11,6 @@ i18next
     fallbackLng: 'en',
     debug: true,
     ns: ['common', 'side_menu', 'transfers', 'guest'],
-    defaultNS: 'common',
     backend: {
       request: async (
         options: any,
