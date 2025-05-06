@@ -15,7 +15,7 @@ export default function BaseHeader() {
 
   return (
     <AppBar
-      position="static"
+      position="fixed"
       elevation={0}
       sx={{
         borderBottom: !isMobile ? '2px solid #2D3B4E1A' : 'unset',

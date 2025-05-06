@@ -81,7 +81,7 @@ export default function BaseLayout({ children }: any) {
   ];
 
   return (
-    <Box display="flex" height="100vh">
+    <Box display="flex" height="100%">
       {/* Sidebar */}
       <Drawer
         variant={isMobile ? 'temporary' : 'permanent'}
@@ -267,6 +267,7 @@ export default function BaseLayout({ children }: any) {
         flexGrow={1}
         onClick={closeSidebar}
         sx={{
+          marginBlockStart: isMobile ? '65px' : '66px',
           ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
           transition: 'margin-left 0.3s',
           padding: isMobile ? '16px 20px' : '36px 32px',
