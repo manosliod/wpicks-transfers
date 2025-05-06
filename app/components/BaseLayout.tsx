@@ -277,7 +277,7 @@ export default function BaseLayout({ children }: any) {
       >
         <Box
           sx={{
-            maxWidth: 'fit-content',
+            maxWidth: isMobile ? '320px' : 'fit-content',
             marginInline: 'auto',
             overflowX: 'auto',
           }}

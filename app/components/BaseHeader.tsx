@@ -18,9 +18,12 @@ export default function BaseHeader() {
       position="static"
       elevation={0}
       sx={{
-        borderBottom: '2px solid #2D3B4E1A',
+        borderBottom: !isMobile ? '2px solid #2D3B4E1A' : 'unset',
         backgroundColor: '#fff',
         color: '#555',
+        borderBottomLeftRadius: isMobile ? '8px' : null,
+        borderBottomRightRadius: isMobile ? '8px' : null,
+        boxShadow: isMobile ? '0px 0px 8px rgba(45, 59, 78, 0.1)' : null,
       }}
     >
       <Toolbar
