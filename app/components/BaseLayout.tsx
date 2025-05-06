@@ -117,7 +117,7 @@ export default function BaseLayout({ children }: any) {
           <CardHeader
             avatar={
               <Box sx={{ marginInline: '2px' }}>
-                <Image src={WpLogo.src} alt="Logo" className="" />
+                <Image src={WpLogo.src} alt="Logo" width={48} height={48} />
               </Box>
             }
             title={<Typography variant="h6">{t('side_menu:title')}</Typography>}
