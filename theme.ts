@@ -7,7 +7,7 @@ const theme = createTheme({
     fontFamily: 'var(--font-open-sans), Arial, Helvetica, sans-serif',
     allVariants: {
       fontSize: '15px',
-      lineHeight: 1,
+      lineHeight: 1.2,
       letterSpacing: '0px',
     },
     h1: {
