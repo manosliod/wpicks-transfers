@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
+import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
 
 interface TransfersListMobileCardProps {
   transfer: TransferItem;
@@ -21,17 +22,17 @@ const TransfersListMobileCard: React.FC<TransfersListMobileCardProps> = ({
   transfer,
 }) => {
   const { t } = useTranslation();
-  type OpportunityKey =
-    | 'babies'
-    | 'return_transfer'
-    | 'early_checkin'
-    | 'late_checkout';
-  const opportunityKeys: OpportunityKey[] = [
-    'babies',
-    'return_transfer',
-    'early_checkin',
-    'late_checkout',
-  ];
+
+  const getCategoryTrans = () => {
+    switch (transfer?.category.toLowerCase().replace(' ', '-')) {
+      case 'arrival':
+        return t('transfers:list_table.arrive:adverb');
+      case 'departure':
+        return t('transfers:list_table.depart:adverb');
+      default:
+        return transfer?.category;
+    }
+  };
 
   return (
     <Card
@@ -58,7 +59,25 @@ const TransfersListMobileCard: React.FC<TransfersListMobileCardProps> = ({
               sx={{ width: '54px', height: '54px' }}
             />
           }
-          title={'Arriving'}
+          title={
+            <StatusBadge
+              category={transfer?.category}
+              sx={{
+                borderRadius: '32px',
+                padding: '4px 6px',
+                '& > svg': { width: '14px', height: '13px' },
+                marginBlockEnd: '6px',
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                fontSize="10px"
+                sx={{ color: '#fff', lineHeight: '13px', display: 'flex' }}
+              >
+                {getCategoryTrans()}
+              </Typography>
+            </StatusBadge>
+          }
           subheader={
             <Typography variant="body1" fontWeight={600}>
               {transfer?.traveler_first_name} {transfer?.traveler_last_name}

@@ -13,6 +13,7 @@ import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
 import WpIcon from '@/app/components/WpIcon';
 import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
 import { mapTransferCategoryToIconName } from '@/app/shared/helpers/mapTransferCategoryToIconName';
+import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
 
 interface CustomBodyCellProps extends TableCellProps {
   label?: string;
@@ -117,8 +118,9 @@ const TransfersListTableBody: React.FC<{
           {items.map((item, index) => (
             <TableRow key={index}>
               <CustomBodyCell>
-                <WpIcon
-                  name={mapTransferCategoryToIconName(item?.category || '')}
+                <StatusBadge
+                  category={item?.category}
+                  sx={{ borderRadius: '50%', width: '38px', height: '38px' }}
                 />
               </CustomBodyCell>
               <CustomBodyCell>
