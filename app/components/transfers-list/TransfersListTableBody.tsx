@@ -1,5 +1,4 @@
 import React from 'react';
-import { isToday, isTomorrow, parseISO } from 'date-fns';
 import {
   TableRow,
   TableCell,
@@ -9,11 +8,11 @@ import {
   TableCellProps,
   Avatar,
 } from '@mui/material';
-import { format } from 'date-fns';
 import { useTranslation } from 'next-i18next';
-import type { WpIconProps } from '@/app/components/WpIcon';
+import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
 import WpIcon from '@/app/components/WpIcon';
-import OpportunityIcon from '@/app/components/transfers-list/partials/OpportunityIcon';
+import Opportunities from '@/app/components/transfers-list/partials/Opportunities';
+import { mapTransferCategoryToIconName } from '@/app/shared/helpers/mapTransferCategoryToIconName';
 
 interface CustomBodyCellProps extends TableCellProps {
   label?: string;
@@ -66,7 +65,7 @@ const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
   );
 };
 
-interface TransferItem {
+export interface TransferItem {
   category: string;
   traveler_photo: string;
   traveler_first_name: string;
@@ -89,27 +88,6 @@ const TransfersListTableBody: React.FC<{
   formattedTransfersList: FormattedTransfers[];
 }> = ({ formattedTransfersList }) => {
   const { t } = useTranslation();
-
-  type OpportunityKey =
-    | 'babies'
-    | 'return_transfer'
-    | 'early_checkin'
-    | 'late_checkout';
-  const opportunityKeys: OpportunityKey[] = [
-    'babies',
-    'return_transfer',
-    'early_checkin',
-    'late_checkout',
-  ];
-
-  const getWpIconName = (category: string): WpIconProps['name'] => {
-    const lowerCaseCategory = category.toLowerCase();
-    if (lowerCaseCategory === 'in city') {
-      return 'transfer' as WpIconProps['name'];
-    } else {
-      return lowerCaseCategory as WpIconProps['name'];
-    }
-  };
 
   return (
     <TableBody>
@@ -139,7 +117,9 @@ const TransfersListTableBody: React.FC<{
           {items.map((item, index) => (
             <TableRow key={index}>
               <CustomBodyCell>
-                <WpIcon name={getWpIconName(item?.category || '')} />
+                <WpIcon
+                  name={mapTransferCategoryToIconName(item?.category || '')}
+                />
               </CustomBodyCell>
               <CustomBodyCell>
                 <Box
@@ -170,30 +150,12 @@ const TransfersListTableBody: React.FC<{
               </CustomBodyCell>
               <CustomBodyCell label={item?.property_title} />
               <CustomBodyCell
-                label={
-                  isToday(parseISO(item?.datetime))
-                    ? `${t('common:common.today')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
-                    : isTomorrow(parseISO(item?.datetime))
-                      ? `${t('common:common.tomorrow')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
-                      : format(parseISO(item?.datetime), 'iii, d MMMM')
-                }
+                label={formatArrivalDepartureDate(item?.datetime, t)}
               />
               <CustomBodyCell label={item?.location_title} />
               <CustomBodyCell>
                 <Box display="flex" gap={1}>
-                  {opportunityKeys.some((key) => item[key]) ? (
-                    opportunityKeys.map((key) =>
-                      item[key] ? (
-                        <OpportunityIcon key={key}>
-                          <WpIcon name={key as WpIconProps['name']} />
-                        </OpportunityIcon>
-                      ) : null
-                    )
-                  ) : (
-                    <OpportunityIcon key="dash">
-                      <WpIcon name="dash" />
-                    </OpportunityIcon>
-                  )}
+                  <Opportunities transfer={item} />
                 </Box>
               </CustomBodyCell>
             </TableRow>
