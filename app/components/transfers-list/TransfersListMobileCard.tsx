@@ -11,7 +11,7 @@ import {
   CardHeader,
   Typography,
 } from '@mui/material';
-import Opportunities from '@/app/components/transfers-list/partials/Opportunities';
+import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
 
 interface TransfersListMobileCardProps {
   transfer: TransferItem;
@@ -86,7 +86,7 @@ const TransfersListMobileCard: React.FC<TransfersListMobileCardProps> = ({
         />
         <LabelValuePair label={`${t('transfers:list_table.opportunities')}`}>
           <Box sx={{ display: 'flex', gap: '12px' }}>
-            <Opportunities transfer={transfer} />
+            <OpportunitiesCell transfer={transfer} />
           </Box>
         </LabelValuePair>
       </CardContent>

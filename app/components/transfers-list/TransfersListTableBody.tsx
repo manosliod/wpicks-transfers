@@ -11,7 +11,7 @@ import {
 import { useTranslation } from 'next-i18next';
 import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
 import WpIcon from '@/app/components/WpIcon';
-import Opportunities from '@/app/components/transfers-list/partials/Opportunities';
+import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
 import { mapTransferCategoryToIconName } from '@/app/shared/helpers/mapTransferCategoryToIconName';
 
 interface CustomBodyCellProps extends TableCellProps {
@@ -155,7 +155,7 @@ const TransfersListTableBody: React.FC<{
               <CustomBodyCell label={item?.location_title} />
               <CustomBodyCell>
                 <Box display="flex" gap={1}>
-                  <Opportunities transfer={item} />
+                  <OpportunitiesCell transfer={item} />
                 </Box>
               </CustomBodyCell>
             </TableRow>
