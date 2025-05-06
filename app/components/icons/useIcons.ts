@@ -15,3 +15,4 @@ export * from './BabyIcon';
 export * from './CarIcon';
 export * from './EarlyCheckInIcon';
 export * from './LateCheckOutIcon';
+export * from './CalendarIcon';

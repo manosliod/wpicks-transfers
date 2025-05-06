@@ -16,21 +16,15 @@ import {
   CarIcon,
   EarlyCheckInIcon,
   LateCheckOutIcon,
+  CalendarIcon,
 } from './icons/useIcons';
-
-// import  BabyFaceIcon from '@/assets/icons/baby-face.svg';
-// import  CarIcon from '@/assets/icons/car.svg';
-// import  SunIcon from '@/assets/icons/sun.svg';
-// import  MoonIcon from '@/assets/icons/moon.svg';
-// import  EntranceIcon from '@/assets/icons/entrance.svg';
-// import  ExitIcon from '@/assets/icons/exit.svg';
-// import  BuildingIcon from '@/assets/icons/building.svg';
 
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const icons = {
   dash: DashIcon,
   menu: MenuIcon,
+  calendar: CalendarIcon,
   'double-chevron-left': DoubleChevronLeftIcon,
   'double-chevron-right': DoubleChevronRightIcon,
   power: PowerIcon,
