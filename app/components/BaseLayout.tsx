@@ -2,6 +2,7 @@
 
 import '@/lib/i18n';
 import React from 'react';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useStopPropagation } from '@/app/shared/hooks/useHooks';
 import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
@@ -116,7 +117,7 @@ export default function BaseLayout({ children }: any) {
           <CardHeader
             avatar={
               <Box sx={{ marginInline: '2px' }}>
-                <img src={WpLogo.src} alt="Logo" className="" />
+                <Image src={WpLogo.src} alt="Logo" className="" />
               </Box>
             }
             title={<Typography variant="h6">{t('side_menu:title')}</Typography>}

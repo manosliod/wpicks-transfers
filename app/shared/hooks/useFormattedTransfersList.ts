@@ -23,5 +23,5 @@ export function useFormattedTransfersList(transfersListData: any) {
 
       return { formattedDate, items };
     });
-  }, [groupedTransfersListData]);
+  }, [groupedTransfersListData, t]);
 }
