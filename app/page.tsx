@@ -1,6 +1,6 @@
 import { safeFetch } from '@/lib/safeFetch';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'auto';
 
 import BaseHeader from '@/app/components/BaseHeader';
 import BaseLayout from '@/app/components/BaseLayout';
