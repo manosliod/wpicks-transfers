@@ -64,7 +64,7 @@ export default function BaseLayout({ children }: any) {
     },
     {
       label: t('side_menu:scheduled'),
-      icon: <WpIcon name="calendar" />,
+      icon: <WpIcon name="scheduled" />,
     },
     {
       label: t('side_menu:statistics'),
