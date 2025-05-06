@@ -1,4 +1,4 @@
-export function CalendarIcon() {
+export function ScheduledIcon() {
   return (
     <svg
       width="26"
