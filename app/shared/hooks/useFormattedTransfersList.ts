@@ -9,19 +9,21 @@ export function useFormattedTransfersList(transfersListData: any) {
   const groupedTransfersListData = useGroupByDate(transfersListData);
 
   return useMemo(() => {
-    return Object.entries(groupedTransfersListData).map(([dateKey, items]) => {
-      const date = new Date(dateKey);
-      let formattedDate: string;
+    return Object.entries(groupedTransfersListData).map(
+      ([dateKey, transfers]) => {
+        const date = new Date(dateKey);
+        let formattedDate: string;
 
-      if (isToday(date)) {
-        formattedDate = t('common:today');
-      } else if (isTomorrow(date)) {
-        formattedDate = t('common:tomorrow');
-      } else {
-        formattedDate = format(date, 'iiii, d MMMM');
+        if (isToday(date)) {
+          formattedDate = t('common:today');
+        } else if (isTomorrow(date)) {
+          formattedDate = t('common:tomorrow');
+        } else {
+          formattedDate = format(date, 'iiii, d MMMM');
+        }
+
+        return { formattedDate, transfers };
       }
-
-      return { formattedDate, items };
-    });
+    );
   }, [groupedTransfersListData, t]);
 }

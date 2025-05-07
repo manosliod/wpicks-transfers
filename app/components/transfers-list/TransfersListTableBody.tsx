@@ -12,6 +12,7 @@ import { useTranslation } from 'next-i18next';
 import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
 import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
 import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
+import { useCarouselModalStore } from '@/app/shared/stores/carouselModalStore';
 
 interface CustomBodyCellProps extends TableCellProps {
   label?: string;
@@ -65,6 +66,7 @@ const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
 };
 
 export interface TransferItem {
+  id: string;
   category: string;
   traveler_photo: string;
   traveler_first_name: string;
@@ -80,17 +82,18 @@ export interface TransferItem {
 
 export interface FormattedTransfers {
   formattedDate: string;
-  items: TransferItem[];
+  transfers: TransferItem[];
 }
 
 const TransfersListTableBody: React.FC<{
   formattedTransfersList: FormattedTransfers[];
 }> = ({ formattedTransfersList }) => {
   const { t } = useTranslation();
+  const { handleOpenById } = useCarouselModalStore();
 
   return (
     <TableBody>
-      {formattedTransfersList.map(({ formattedDate, items }, index) => (
+      {formattedTransfersList.map(({ formattedDate, transfers }, index) => (
         <>
           <TableRow key={`formatted-date-${index}`}>
             <CustomBodyCell
@@ -113,8 +116,16 @@ const TransfersListTableBody: React.FC<{
             </CustomBodyCell>
           </TableRow>
 
-          {items.map((item, index) => (
-            <TableRow key={index}>
+          {transfers.map((item, index) => (
+            <TableRow
+              key={index}
+              onClick={() =>
+                handleOpenById(
+                  item.id,
+                  formattedTransfersList.flatMap((item) => item.transfers)
+                )
+              }
+            >
               <CustomBodyCell>
                 <StatusBadge
                   category={item?.category}

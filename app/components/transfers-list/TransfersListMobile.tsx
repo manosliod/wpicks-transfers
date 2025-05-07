@@ -16,7 +16,7 @@ const TransfersListMobile: React.FC<{
         maxWidth: '320px',
       }}
     >
-      {formattedTransfersList.map(({ formattedDate, items }, index) => (
+      {formattedTransfersList.map(({ formattedDate, transfers }, index) => (
         <Box
           key={`mobile-${index}`}
           sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
@@ -47,7 +47,7 @@ const TransfersListMobile: React.FC<{
             </Typography>
           </Box>
 
-          {items.map((item, index) => (
+          {transfers.map((item, index) => (
             <TransfersListMobileCard
               key={`mobile-transfer-${index}`}
               transfer={item}
