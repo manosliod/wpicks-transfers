@@ -18,7 +18,6 @@ import { useStopPropagation } from '@/app/shared/hooks/useStopPropagation';
 import GuestCard from '@/app/components/transfers-list/partials/GuestCard';
 import type { TransferDetailsItem } from '@/app/shared/types/transferDetails';
 import GuestTransfers from '@/app/components/transfers-list/partials/GuestTransfers';
-import { useUnmount } from '@/app/shared/hooks/useHooks';
 
 interface CarouselModalProps {
   transfersList: FormattedTransfers[];
@@ -43,8 +42,6 @@ const CarouselModal = ({
 
   const stopPropagationAndGoNext = useStopPropagation(goNext);
   const stopPropagationAndGoPrev = useStopPropagation(goPrev);
-
-  useUnmount(() => (open ? handleClose() : undefined));
 
   return (
     <Fragment>

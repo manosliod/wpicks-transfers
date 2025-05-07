@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Sheet } from 'react-modal-sheet';
 import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
@@ -6,14 +6,11 @@ import { Box, Divider, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import GuestTransfers from '@/app/components/transfers-list/partials/GuestTransfers';
 import GuestCardMobile from '@/app/components/transfers-list/partials/GuestCardMobile';
-import { useUnmount } from '@/app/shared/hooks/useHooks';
 
 export default function BottomSheet() {
   const { t } = useTranslation();
   const { transfer, transferDetails, open, closeSheet } =
     useTransferBottomSheetStore();
-
-  useUnmount(() => (open ? closeSheet() : undefined));
 
   return (
     <>
