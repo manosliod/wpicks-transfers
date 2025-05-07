@@ -13,7 +13,7 @@ export default function BottomSheet() {
   const { transfer, transferDetails, open, closeSheet } =
     useTransferBottomSheetStore();
 
-  useUnmount(() => closeSheet());
+  useUnmount(() => (open ? closeSheet() : undefined));
 
   return (
     <>

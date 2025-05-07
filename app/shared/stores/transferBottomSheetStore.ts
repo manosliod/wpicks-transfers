@@ -20,17 +20,35 @@ export const useTransferBottomSheetStore = create<TransferBottomSheetState>(
     transferDetails: null,
 
     openSheet: (transfer, transferDetails) =>
-      set({
-        open: true,
-        transfer,
-        transferDetails,
+      set((state) => {
+        if (
+          state.open === true &&
+          state.transfer === transfer &&
+          state.transferDetails === transferDetails
+        ) {
+          return state;
+        }
+        return {
+          open: true,
+          transfer,
+          transferDetails,
+        };
       }),
 
     closeSheet: () =>
-      set({
-        open: false,
-        transfer: null,
-        transferDetails: null,
+      set((state) => {
+        if (
+          state.open === false &&
+          state.transfer === null &&
+          state.transferDetails === null
+        ) {
+          return state;
+        }
+        return {
+          open: false,
+          transfer: null,
+          transferDetails: null,
+        };
       }),
   })
 );

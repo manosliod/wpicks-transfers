@@ -44,7 +44,7 @@ const CarouselModal = ({
   const stopPropagationAndGoNext = useStopPropagation(goNext);
   const stopPropagationAndGoPrev = useStopPropagation(goPrev);
 
-  useUnmount(() => handleClose());
+  useUnmount(() => (open ? handleClose() : undefined));
 
   return (
     <Fragment>
