@@ -19,11 +19,7 @@ interface CustomBodyCellProps extends TableCellProps {
   children?: React.ReactNode;
 }
 
-const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
-  label,
-  children,
-  ...props
-}) => {
+const CustomBodyCell = ({ label, children, ...props }: CustomBodyCellProps) => {
   return (
     <TableCell
       {...props}
@@ -85,9 +81,13 @@ export interface FormattedTransfers {
   transfers: TransferItem[];
 }
 
-const TransfersListTableBody: React.FC<{
+interface TransfersListTableBody {
   transfersList: FormattedTransfers[];
-}> = ({ transfersList }) => {
+}
+
+export default function TransfersListTableBody({
+  transfersList,
+}: TransfersListTableBody) {
   const { t } = useTranslation();
   const { handleOpenById } = useCarouselModalStore();
 
@@ -175,6 +175,4 @@ const TransfersListTableBody: React.FC<{
       ))}
     </TableBody>
   );
-};
-
-export default TransfersListTableBody;
+}

@@ -43,10 +43,10 @@ interface CarouselModalProps {
   transfersDetails: TransfersDetailsType[];
 }
 
-const CarouselModal: React.FC<CarouselModalProps> = ({
+const CarouselModal = ({
   transfersList,
   transfersDetails,
-}) => {
+}: CarouselModalProps) => {
   const { open, currentIndex, setOpen, setCurrentIndex } =
     useCarouselModalStore();
 

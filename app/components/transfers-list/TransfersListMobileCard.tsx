@@ -18,9 +18,9 @@ interface TransfersListMobileCardProps {
   transfer: TransferItem;
 }
 
-const TransfersListMobileCard: React.FC<TransfersListMobileCardProps> = ({
+export default function TransfersListMobileCard({
   transfer,
-}) => {
+}: TransfersListMobileCardProps) {
   const { t } = useTranslation();
 
   const getCategoryTrans = () => {
@@ -111,6 +111,4 @@ const TransfersListMobileCard: React.FC<TransfersListMobileCardProps> = ({
       </CardContent>
     </Card>
   );
-};
-
-export default TransfersListMobileCard;
+}

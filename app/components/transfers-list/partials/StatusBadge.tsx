@@ -8,11 +8,11 @@ interface StatusBadgeProps extends IconButtonProps {
   children?: React.ReactNode;
 }
 
-export const StatusBadge: React.FC<StatusBadgeProps> = ({
+export default function StatusBadge({
   category,
   children,
   ...rest
-}) => {
+}: StatusBadgeProps) {
   const getStatusBadgeBgColor = () => {
     switch (category.toLowerCase().replace(' ', '-')) {
       case 'arrival':
@@ -41,6 +41,4 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       {children}
     </IconButton>
   );
-};
-
-export default StatusBadge;
+}

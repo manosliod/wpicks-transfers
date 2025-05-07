@@ -4,9 +4,13 @@ import type { FormattedTransfers } from '@/app/components/transfers-list/Transfe
 import WpIcon from '@/app/components/WpIcon';
 import TransfersListMobileCard from '@/app/components/transfers-list/TransfersListMobileCard';
 
-const TransfersListMobile: React.FC<{
+interface TransfersListMobileProps {
   transfersList: FormattedTransfers[];
-}> = ({ transfersList }) => {
+}
+
+export default function TransfersListMobile({
+  transfersList,
+}: TransfersListMobileProps) {
   return (
     <Box
       sx={{
@@ -57,6 +61,4 @@ const TransfersListMobile: React.FC<{
       ))}
     </Box>
   );
-};
-
-export default TransfersListMobile;
+}

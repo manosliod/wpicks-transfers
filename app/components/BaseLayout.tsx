@@ -30,7 +30,11 @@ import WpIcon from '@/app/components/WpIcon';
 import WpLogo from '@/assets/logos/Logo.png';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function BaseLayout({ children }: any) {
+interface BaseLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function BaseLayout({ children }: BaseLayoutProps) {
   const { t } = useTranslation();
   const { isMobile } = usePageStore();
   const { open } = useCarouselModalStore();

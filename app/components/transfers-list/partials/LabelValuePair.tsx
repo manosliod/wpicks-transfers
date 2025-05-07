@@ -7,11 +7,7 @@ interface LabelValuePairProps {
   children?: React.ReactNode;
 }
 
-const LabelValuePair: React.FC<LabelValuePairProps> = ({
-  label,
-  value,
-  children,
-}) => (
+const LabelValuePair = ({ label, value, children }: LabelValuePairProps) => (
   <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
     <Typography
       variant="caption"
