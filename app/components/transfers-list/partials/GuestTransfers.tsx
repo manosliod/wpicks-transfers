@@ -6,6 +6,7 @@ import { formatArrivalDepartureDate } from '@/app/shared/helpers/formatArrivalDe
 import RouteDisplay from '@/app/components/transfers-list/partials/RouteDisplay';
 import TravelDetails from '@/app/components/transfers-list/partials/TravelDetails';
 import FlightDetails from '@/app/components/transfers-list/partials/FlightDetails';
+import { usePageStore } from '@/app/shared/stores/useStore';
 
 interface GuestCardProps {
   transferDetails?: TransferDetailsItem;
@@ -13,6 +14,7 @@ interface GuestCardProps {
 
 export default function GuestTransfers({ transferDetails }: GuestCardProps) {
   const { t } = useTranslation();
+  const { isMobile } = usePageStore();
   const formatedDate = formatArrivalDepartureDate(
     transferDetails?.from_datetime,
     t
@@ -21,8 +23,8 @@ export default function GuestTransfers({ transferDetails }: GuestCardProps) {
     <Box
       sx={{
         borderRadius: '6px',
-        p: 4,
-        backgroundColor: '#2D3B4E08',
+        p: !isMobile ? 4 : null,
+        backgroundColor: !isMobile ? '#2D3B4E08' : null,
         display: 'flex',
         flexDirection: 'column',
         gap: '24px',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import WpIcon, { WpIconProps } from '@/app/components/WpIcon';
+import { usePageStore } from '@/app/shared/stores/pageStore';
 
 interface TravelDetailsProps {
   passengers: string | number | undefined;
@@ -18,6 +19,7 @@ const TravelDetails = ({
   // If all values are 0, don't render anything
   if ([passengers, babyseats, luggage, handLuggage].every((item) => item === 0))
     return null;
+  const { isMobile } = usePageStore();
 
   const travelData = [
     { icon: 'passengers', value: passengers },
@@ -31,7 +33,8 @@ const TravelDetails = ({
       sx={{
         width: '100%',
         padding: '8px 20px',
-        background: '#2D3B4E0A',
+        background: !isMobile ? '#2D3B4E0A' : null,
+        border: isMobile ? '1px solid #2D3B4E14' : null,
         borderRadius: '32px',
         display: 'flex',
         flexDirection: 'row',

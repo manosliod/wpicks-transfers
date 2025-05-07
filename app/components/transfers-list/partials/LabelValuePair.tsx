@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, SxProps, Typography } from '@mui/material';
 
 interface LabelValuePairProps {
   label: string;
   labelProps?: object;
   value?: string | React.ReactNode;
   children?: React.ReactNode;
+  sx?: SxProps;
 }
 
 const LabelValuePair = ({
@@ -13,8 +14,9 @@ const LabelValuePair = ({
   labelProps,
   value,
   children,
+  sx,
 }: LabelValuePairProps) => (
-  <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+  <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px', ...sx }}>
     <Typography
       variant="caption"
       sx={{
