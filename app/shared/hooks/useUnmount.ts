@@ -5,5 +5,5 @@ export function useUnmount(fn: () => void) {
     return () => {
       fn();
     };
-  }, []);
+  }, [fn]);
 }
