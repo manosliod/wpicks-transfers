@@ -105,7 +105,9 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
       height="100%"
       sx={{
         filter:
-          open || bottomSheetOpen || (isMobile && isExpanded)
+          (!isMobile && open) ||
+          (isMobile && bottomSheetOpen) ||
+          (isMobile && isExpanded)
             ? 'blur(10px)'
             : null,
       }}
