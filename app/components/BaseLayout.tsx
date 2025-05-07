@@ -5,7 +5,11 @@ import React from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useStopPropagation } from '@/app/shared/hooks/useHooks';
-import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
+import {
+  useCarouselModalStore,
+  usePageStore,
+  useSidebarStore,
+} from '@/app/shared/stores/useStore';
 
 import {
   Drawer,
@@ -29,6 +33,7 @@ import CloseIcon from '@mui/icons-material/Close';
 export default function BaseLayout({ children }: any) {
   const { t } = useTranslation();
   const { isMobile } = usePageStore();
+  const { open } = useCarouselModalStore();
 
   const {
     selectedKey,
@@ -81,7 +86,11 @@ export default function BaseLayout({ children }: any) {
   ];
 
   return (
-    <Box display="flex" height="100%">
+    <Box
+      display="flex"
+      height="100%"
+      sx={{ filter: open ? 'blur(10px)' : null }}
+    >
       {/* Sidebar */}
       <Drawer
         variant={isMobile ? 'temporary' : 'permanent'}

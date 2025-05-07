@@ -10,6 +10,7 @@ import {
 } from '@/app/shared/stores/useStore';
 import TransfersListTable from '@/app/components/transfers-list/TransfersListTable';
 import TransfersListMobile from '@/app/components/transfers-list/TransfersListMobile';
+import CarouselModal from '@/app/components/transfers-list/CarouselModal';
 
 export default function TransfersList() {
   const { t } = useTranslation();
@@ -34,6 +35,10 @@ export default function TransfersList() {
         // @ts-ignore
         <TransfersListMobile formattedTransfersList={formattedTransfersList} />
       )}
+      <CarouselModal
+        transfersList={formattedTransfersList}
+        transfersDetails={transfersDetails}
+      />
     </>
   );
 }
