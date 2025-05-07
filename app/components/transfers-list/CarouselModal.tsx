@@ -1,6 +1,14 @@
+import { t } from 'i18next';
 import React, { Fragment } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { Dialog, DialogContent, Box, IconButton, Divider } from '@mui/material';
+import {
+  Dialog,
+  DialogContent,
+  Box,
+  IconButton,
+  Divider,
+  Typography,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -9,6 +17,7 @@ import type { FormattedTransfers } from '@/app/components/transfers-list/Transfe
 import { useStopPropagation } from '@/app/shared/hooks/useStopPropagation';
 import GuestCard from '@/app/components/transfers-list/partials/GuestCard';
 import type { TransferDetailsItem } from '@/app/shared/types/transferDetails';
+import GuestTransfers from '@/app/components/transfers-list/partials/GuestTransfers';
 
 interface CarouselModalProps {
   transfersList: FormattedTransfers[];
@@ -44,7 +53,7 @@ const CarouselModal = ({
         onClose={handleClose}
         PaperProps={{
           sx: {
-            p: 4,
+            px: 4,
             my: 6,
             maxWidth: 'calc(100% - 208px)',
             height: 'auto',
@@ -64,6 +73,7 @@ const CarouselModal = ({
           sx={{
             position: 'absolute',
             alignSelf: 'flex-end',
+            top: '32px',
             zIndex: 1310,
             backgroundColor: '#f4f5f7',
             width: 32,
@@ -81,8 +91,8 @@ const CarouselModal = ({
         </IconButton>
         {/* Left Arrow */}
         <IconButton
-          disableRipple
-          onClick={stopPropagationAndGoPrev}
+          disableRipple={currentIndex === 0}
+          onClick={currentIndex !== 0 ? stopPropagationAndGoPrev : undefined}
           sx={{
             width: '40px',
             height: '40px',
@@ -95,7 +105,7 @@ const CarouselModal = ({
             boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
             marginInline: '32px',
             opacity: currentIndex === 0 ? 0.25 : null,
-            pointerEvents: currentIndex === 0 ? 'none' : null,
+            '&:hover': { backgroundColor: '#fff' },
             '& svg': {
               width: '28px',
               height: '28px',
@@ -107,8 +117,12 @@ const CarouselModal = ({
 
         {/* Right Arrow */}
         <IconButton
-          disableRipple
-          onClick={stopPropagationAndGoNext}
+          disableRipple={currentIndex === transfersList.length}
+          onClick={
+            currentIndex !== transfersList.length
+              ? stopPropagationAndGoNext
+              : undefined
+          }
           sx={{
             width: '40px',
             height: '40px',
@@ -121,8 +135,7 @@ const CarouselModal = ({
             boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
             marginInline: '32px',
             opacity: currentIndex === transfersList.length ? 0.55 : null,
-            pointerEvents:
-              currentIndex === transfersList.length ? 'none' : null,
+            '&:hover': { backgroundColor: '#fff' },
             '& svg': {
               width: '28px',
               height: '28px',
@@ -145,11 +158,11 @@ const CarouselModal = ({
                 sx={{
                   p: 0,
                   display: 'flex',
-                  flexDirection: 'column',
-                  minHeight: '300px',
                 }}
               >
-                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                <Box
+                  sx={{ display: 'flex', flexDirection: 'row', pt: 5, pb: 6 }}
+                >
                   <GuestCard
                     transfer={transfer}
                     transferDetails={transfersDetails.find(
@@ -161,6 +174,27 @@ const CarouselModal = ({
                   orientation="vertical"
                   sx={{ height: 'auto', mx: '38px' }}
                 />
+                <Box
+                  sx={{
+                    py: 5,
+                    gap: '18px',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Typography variant="h6" fontWeight={600}>
+                    {t('common:transfer.plural')}
+                  </Typography>
+                  <Box>
+                    <GuestTransfers
+                      transfer={transfer}
+                      transferDetails={transfersDetails.find(
+                        (transfersDetail) => transfer.id === transfersDetail.id
+                      )}
+                    />
+                  </Box>
+                </Box>
               </DialogContent>
             ))
           )}
