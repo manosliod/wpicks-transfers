@@ -7,6 +7,7 @@ import {
   Avatar,
   Typography,
   IconButton,
+  Divider,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -54,7 +55,7 @@ const CarouselModal = ({
             p: 4,
             my: 6,
             maxWidth: 'calc(100% - 208px)',
-            height: '100%',
+            height: 'auto',
             position: 'relative',
             overflow: 'hidden',
             borderRadius: '8px',
@@ -156,11 +157,17 @@ const CarouselModal = ({
                   minHeight: '300px',
                 }}
               >
-                <GuestCard
-                  transfer={transfer}
-                  transferDetails={transfersDetails.find(
-                    (transfersDetail) => transfer.id === transfersDetail.id
-                  )}
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                  <GuestCard
+                    transfer={transfer}
+                    transferDetails={transfersDetails.find(
+                      (transfersDetail) => transfer.id === transfersDetail.id
+                    )}
+                  />
+                </Box>
+                <Divider
+                  orientation="vertical"
+                  sx={{ height: 'auto', mx: '38px' }}
                 />
               </DialogContent>
             ))
