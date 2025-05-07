@@ -2,7 +2,6 @@ export const dynamic = 'force-dynamic';
 
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
-import BaseHeader from '@/app/components/BaseHeader';
 import BaseLayout from '@/app/components/BaseLayout';
 import ClientHome from '@/app/components/ClientHome';
 import TransfersList from '@/app/components/transfers-list/TransfersList';
