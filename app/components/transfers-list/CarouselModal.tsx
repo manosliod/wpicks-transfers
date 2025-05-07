@@ -188,7 +188,6 @@ const CarouselModal = ({
                   </Typography>
                   <Box>
                     <GuestTransfers
-                      transfer={transfer}
                       transferDetails={transfersDetails.find(
                         (transfersDetail) => transfer.id === transfersDetail.id
                       )}
