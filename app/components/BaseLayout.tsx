@@ -59,6 +59,11 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
     [isMobile, isDrawerOpen, isLocked]
   );
 
+  const toggleSideBar = () => {
+    if (isExpanded) closeSidebar();
+    else openSidebar();
+  };
+
   const openSidebar = () => {
     if (isMobile) openDrawer();
     else setLocked(true);
@@ -68,6 +73,8 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
     if (isMobile) closeDrawer();
     else setLocked(false);
   };
+
+  const stopPropagationAndToggleDrawer = useStopPropagation(toggleSideBar);
 
   const menuItems = [
     {
@@ -246,7 +253,7 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
           {!isMobile ? (
             <List>
               <ListItemButton
-                onClick={stopPropagationAndCloseDrawer}
+                onClick={stopPropagationAndToggleDrawer}
                 sx={{
                   padding: isExpanded ? '12px 16px' : '8px',
                   borderRadius: '4px',
