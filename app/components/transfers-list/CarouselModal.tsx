@@ -1,14 +1,6 @@
 import React, { Fragment } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import {
-  Dialog,
-  DialogContent,
-  Box,
-  Avatar,
-  Typography,
-  IconButton,
-  Divider,
-} from '@mui/material';
+import { Dialog, DialogContent, Box, IconButton, Divider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
