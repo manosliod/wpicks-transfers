@@ -5,8 +5,8 @@ import WpIcon from '@/app/components/WpIcon';
 import TransfersListMobileCard from '@/app/components/transfers-list/TransfersListMobileCard';
 
 const TransfersListMobile: React.FC<{
-  formattedTransfersList: FormattedTransfers[];
-}> = ({ formattedTransfersList }) => {
+  transfersList: FormattedTransfers[];
+}> = ({ transfersList }) => {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ const TransfersListMobile: React.FC<{
         maxWidth: '320px',
       }}
     >
-      {formattedTransfersList.map(({ formattedDate, transfers }, index) => (
+      {transfersList.map(({ formattedDate, transfers }, index) => (
         <Box
           key={`mobile-${index}`}
           sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}

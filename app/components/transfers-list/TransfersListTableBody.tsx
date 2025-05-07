@@ -86,14 +86,14 @@ export interface FormattedTransfers {
 }
 
 const TransfersListTableBody: React.FC<{
-  formattedTransfersList: FormattedTransfers[];
-}> = ({ formattedTransfersList }) => {
+  transfersList: FormattedTransfers[];
+}> = ({ transfersList }) => {
   const { t } = useTranslation();
   const { handleOpenById } = useCarouselModalStore();
 
   return (
     <TableBody>
-      {formattedTransfersList.map(({ formattedDate, transfers }, index) => (
+      {transfersList.map(({ formattedDate, transfers }, index) => (
         <>
           <TableRow key={`formatted-date-${index}`}>
             <CustomBodyCell
@@ -122,7 +122,7 @@ const TransfersListTableBody: React.FC<{
               onClick={() =>
                 handleOpenById(
                   item.id,
-                  formattedTransfersList.flatMap((item) => item.transfers)
+                  transfersList.flatMap((item) => item.transfers)
                 )
               }
             >

@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'next-i18next';
 import { Typography } from '@mui/material';
-import { useFormattedTransfersList } from '@/app/shared/hooks/useHooks';
+import { useGroupByDate } from '@/app/shared/hooks/useHooks';
 import {
   useTransfersListStore,
   useTransfersDetailsStore,
@@ -18,7 +18,7 @@ export default function TransfersList() {
   const { transfersList } = useTransfersListStore();
   const { transfersDetails } = useTransfersDetailsStore();
 
-  const formattedTransfersList = useFormattedTransfersList(transfersList);
+  const groupedTransfersList = useGroupByDate(transfersList);
 
   return (
     <>
@@ -27,16 +27,12 @@ export default function TransfersList() {
           <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
             {t('common:transfer.plural')}
           </Typography>
-          {/*@ts-ignore*/}
-          <TransfersListTable formattedTransfersList={formattedTransfersList} />
+          <TransfersListTable transfersList={groupedTransfersList} />
         </>
       )}
-      {isMobile && (
-        // @ts-ignore
-        <TransfersListMobile formattedTransfersList={formattedTransfersList} />
-      )}
+      {isMobile && <TransfersListMobile transfersList={groupedTransfersList} />}
       <CarouselModal
-        transfersList={formattedTransfersList}
+        transfersList={groupedTransfersList}
         transfersDetails={transfersDetails}
       />
     </>

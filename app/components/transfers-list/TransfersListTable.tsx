@@ -5,8 +5,8 @@ import TransfersListTableBody from '@/app/components/transfers-list/TransfersLis
 import type { FormattedTransfers } from '@/app/components/transfers-list/TransfersListTableBody';
 
 const TransfersListTable: React.FC<{
-  formattedTransfersList: FormattedTransfers[];
-}> = ({ formattedTransfersList }) => {
+  transfersList: FormattedTransfers[];
+}> = ({ transfersList }) => {
   return (
     <Box
       sx={{
@@ -24,9 +24,7 @@ const TransfersListTable: React.FC<{
         }}
       >
         <TransfersListTableHead />
-        <TransfersListTableBody
-          formattedTransfersList={formattedTransfersList}
-        />
+        <TransfersListTableBody transfersList={transfersList} />
       </Table>
     </Box>
   );
