@@ -2761,6 +2761,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^12.10.1":
+  version: 12.10.1
+  resolution: "framer-motion@npm:12.10.1"
+  dependencies:
+    motion-dom: "npm:^12.10.1"
+    motion-utils: "npm:^12.9.4"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/390da3b05276a938e4d05d4b6f6f5e07e44282e9ae9eb70bb2e1bd1249b34ea707b51d5d095228b73720bb8eb9b90fc50d2e1e1a0866659344e0b158eb5b093f
+  languageName: node
+  linkType: hard
+
 "fresh@npm:^2.0.0":
   version: 2.0.0
   resolution: "fresh@npm:2.0.0"
@@ -3671,6 +3693,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"motion-dom@npm:^12.10.1":
+  version: 12.10.1
+  resolution: "motion-dom@npm:12.10.1"
+  dependencies:
+    motion-utils: "npm:^12.9.4"
+  checksum: 10c0/819e7fc62249f9c385bf58962333ae3289b7e0ca21ac4f4aa1032bcbe404b97ec900910ed42cbb0183d607abc5481e2e526582baf65c645ace0605a380d02405
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.9.4":
+  version: 12.9.4
+  resolution: "motion-utils@npm:12.9.4"
+  checksum: 10c0/b6783babfd1282ad320585f7cdac9fe7a1f97b39e07d12a500d3709534441bd9d49b556fa1cd838d1bde188570d4ab6b4c5aa9d297f7f5aa9dc16d600c17afdc
+  languageName: node
+  linkType: hard
+
+"motion@npm:^12.10.1":
+  version: 12.10.1
+  resolution: "motion@npm:12.10.1"
+  dependencies:
+    framer-motion: "npm:^12.10.1"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/b4be640cb02c1f47b8052b434e61667d7af360ec6938f52a15639765f4a1f8aa70a57922a4b2c5f2b91dc8e2be0f5b627709d6b8d91346098389fc9b75a2a7e4
+  languageName: node
+  linkType: hard
+
 "ms@npm:^2.1.1, ms@npm:^2.1.3":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
@@ -3700,6 +3759,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.3.1"
     i18next: "npm:^25.0.1"
     i18next-http-backend: "npm:^3.0.2"
+    motion: "npm:^12.10.1"
     next: "npm:15.3.1"
     next-i18next: "npm:^15.4.2"
     prettier: "npm:^3.5.3"
