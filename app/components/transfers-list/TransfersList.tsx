@@ -13,6 +13,7 @@ import TransfersListTable from '@/app/components/transfers-list/TransfersListTab
 import TransfersListMobile from '@/app/components/transfers-list/TransfersListMobile';
 import CarouselModal from '@/app/components/transfers-list/CarouselModal';
 import BottomSheet from '@/app/components/transfers-list/BottomSheet';
+import TransfersListPagination from '@/app/components/transfers-list/TransfersListPagination';
 
 export default function TransfersList() {
   const { t } = useTranslation();
@@ -42,6 +43,7 @@ export default function TransfersList() {
           <BottomSheet />
         </Fragment>
       )}
+      <TransfersListPagination />
     </Fragment>
   );
 }
