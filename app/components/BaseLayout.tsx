@@ -269,7 +269,23 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
               </ListItemButton>
             </List>
           ) : (
-            <Button variant="contained">{t('side_menu:logout')} </Button>
+            <Button
+              disableElevation
+              variant="contained"
+              sx={{
+                py: '20px',
+                color: '#2D3B4E',
+                backgroundColor: '#F4F5F6',
+              }}
+            >
+              <Typography
+                variant="body2"
+                textTransform="capitalize"
+                fontWeight={600}
+              >
+                {t('side_menu:logout')}
+              </Typography>
+            </Button>
           )}
         </Box>
       </Drawer>
