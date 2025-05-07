@@ -167,7 +167,7 @@ const CarouselModal: React.FC<CarouselModalProps> = ({
           enableMouseEvents
         >
           {transfersList.map(({ transfers }) =>
-            transfers.map((item, index) => (
+            transfers.map((item) => (
               <DialogContent
                 key={item.id}
                 sx={{
