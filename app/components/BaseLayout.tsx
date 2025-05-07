@@ -29,6 +29,8 @@ import {
 import WpIcon from '@/app/components/WpIcon';
 import WpLogo from '@/assets/logos/Logo.png';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
+import BaseHeader from '@/app/components/BaseHeader';
 
 interface BaseLayoutProps {
   children: React.ReactNode;
@@ -38,6 +40,7 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
   const { t } = useTranslation();
   const { isMobile } = usePageStore();
   const { open } = useCarouselModalStore();
+  const { open: bottomSheetOpen } = useTransferBottomSheetStore();
 
   const {
     selectedKey,
@@ -93,7 +96,12 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
     <Box
       display="flex"
       height="100%"
-      sx={{ filter: open ? 'blur(10px)' : null }}
+      sx={{
+        filter:
+          open || bottomSheetOpen || (isMobile && isExpanded)
+            ? 'blur(10px)'
+            : null,
+      }}
     >
       {/* Sidebar */}
       <Drawer
@@ -113,6 +121,11 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
             boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
             border: 0,
             borderRight: '1px solid #2D3B4E1A',
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            backgroundColor: 'rgba(76, 88, 104, 0.9)',
           },
         }}
       >
@@ -307,6 +320,8 @@ export default function BaseLayout({ children }: BaseLayoutProps) {
           padding: isMobile ? '16px 20px' : '36px 32px',
         }}
       >
+        <BaseHeader />
+
         <Box
           sx={{
             maxWidth: isMobile ? '320px' : 'fit-content',

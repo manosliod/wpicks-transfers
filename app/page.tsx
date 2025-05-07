@@ -26,7 +26,6 @@ export default async function Home() {
         transfersListData={transfersListData?.transfersList}
         transfersDetailsData={transfersDetailsData?.transfersDetails}
       >
-        <BaseHeader />
         <BaseLayout>
           <TransfersList />
         </BaseLayout>
