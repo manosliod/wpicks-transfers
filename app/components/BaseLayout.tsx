@@ -27,7 +27,7 @@ import {
 } from '@mui/material';
 
 import WpIcon from '@/app/components/WpIcon';
-import WpLogo from '@/assets/logos/Logo.png';
+import WpLogo from '@/app/assets/logos/Logo.png';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
 import BaseHeader from '@/app/components/BaseHeader';
