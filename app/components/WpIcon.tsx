@@ -17,6 +17,13 @@ import {
   EarlyCheckInIcon,
   LateCheckOutIcon,
   CalendarIcon,
+  ArrowDottedIcon,
+  PeopleIcon,
+  BabySeatIcon,
+  LuggageIcon,
+  HandLuggageIcon,
+  TakeOffIcon,
+  TimeIcon,
 } from './icons/useIcons';
 
 import { SvgIcon, SvgIconProps } from '@mui/material';
@@ -40,6 +47,13 @@ const icons = {
   return_transfer: CarIcon,
   early_checkin: EarlyCheckInIcon,
   late_checkout: LateCheckOutIcon,
+  'arrow-dotted': ArrowDottedIcon,
+  passengers: PeopleIcon,
+  babyseats: BabySeatIcon,
+  luggage: LuggageIcon,
+  hand_luggage: HandLuggageIcon,
+  take_off: TakeOffIcon,
+  time: TimeIcon,
 };
 
 export interface WpIconProps extends SvgIconProps {
