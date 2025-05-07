@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from '@/theme';
+import theme from '@/app/theme/theme';
 
 export default function RootLayout({
   children,
