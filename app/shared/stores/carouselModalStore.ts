@@ -13,7 +13,11 @@ interface CarouselModalState {
 export const useCarouselModalStore = create<CarouselModalState>((set) => ({
   open: false,
   currentIndex: 0,
-  setOpen: (open) => set({ open }),
+  setOpen: (open) =>
+    set((state) => {
+      if (state.open === open) return state;
+      return { open };
+    }),
   setCurrentIndex: (index) =>
     typeof index === 'function'
       ? set((state) => ({ currentIndex: index(state.currentIndex) }))
