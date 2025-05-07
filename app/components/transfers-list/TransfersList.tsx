@@ -12,6 +12,7 @@ import {
 import TransfersListTable from '@/app/components/transfers-list/TransfersListTable';
 import TransfersListMobile from '@/app/components/transfers-list/TransfersListMobile';
 import CarouselModal from '@/app/components/transfers-list/CarouselModal';
+import BottomSheet from '@/app/components/transfers-list/BottomSheet';
 
 export default function TransfersList() {
   const { t } = useTranslation();
@@ -29,13 +30,18 @@ export default function TransfersList() {
             {t('common:transfer.plural')}
           </Typography>
           <TransfersListTable transfersList={groupedTransfersList} />
+          <CarouselModal
+            transfersList={groupedTransfersList}
+            transfersDetails={transfersDetails}
+          />
         </Fragment>
       )}
-      {isMobile && <TransfersListMobile transfersList={groupedTransfersList} />}
-      <CarouselModal
-        transfersList={groupedTransfersList}
-        transfersDetails={transfersDetails}
-      />
+      {isMobile && (
+        <Fragment>
+          <TransfersListMobile transfersList={groupedTransfersList} />
+          <BottomSheet />
+        </Fragment>
+      )}
     </Fragment>
   );
 }

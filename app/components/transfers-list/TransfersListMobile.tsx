@@ -51,10 +51,10 @@ export default function TransfersListMobile({
             </Typography>
           </Box>
 
-          {transfers.map((item, index) => (
+          {transfers.map((transfer, index) => (
             <TransfersListMobileCard
               key={`mobile-transfer-${index}`}
-              transfer={item}
+              transfer={transfer}
             />
           ))}
         </Box>

@@ -13,15 +13,21 @@ import {
 } from '@mui/material';
 import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
 import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
+import { TransferDetailsItem } from '@/app/shared/types/transferDetails';
+import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
+import { useTransfersDetailsStore } from '@/app/shared/stores/transfersDetailsStore/transfersDetailsStore';
 
 interface TransfersListMobileCardProps {
   transfer: TransferItem;
+  onClick?: () => void;
 }
 
 export default function TransfersListMobileCard({
   transfer,
 }: TransfersListMobileCardProps) {
   const { t } = useTranslation();
+  const { openSheet } = useTransferBottomSheetStore();
+  const { transfersDetails } = useTransfersDetailsStore();
 
   const getCategoryTrans = () => {
     switch (transfer?.category.toLowerCase().replace(' ', '-')) {
@@ -43,6 +49,15 @@ export default function TransfersListMobileCard({
         borderRadius: '6px',
         boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
       }}
+      onClick={() =>
+        openSheet(
+          transfer,
+          transfersDetails.find(
+            (transferDetail: TransferDetailsItem) =>
+              transferDetail.id === transfer.id
+          )
+        )
+      }
     >
       <CardContent
         sx={{
