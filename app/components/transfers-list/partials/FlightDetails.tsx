@@ -1,6 +1,7 @@
-import { Box, Divider, Typography } from '@mui/material';
-import WpIcon, { WpIconProps } from '@/app/components/WpIcon';
 import React from 'react';
+import { Box, Divider, Typography } from '@mui/material';
+import { usePageStore } from '@/app/shared/stores/pageStore';
+import WpIcon, { WpIconProps } from '@/app/components/WpIcon';
 
 interface FlightDetailsProps {
   flightNumber?: string;
@@ -18,12 +19,15 @@ export default function FlightDetails({
     { icon: 'time', value: flightTime, fontWeight: 600 },
     { value: flightStatus, color: '#42c594' },
   ];
+  const { isMobile } = usePageStore();
+
   return (
     <Box
       sx={{
         width: 'fit-content',
         padding: '8px 20px',
-        background: '#2D3B4E0A',
+        background: !isMobile ? '#2D3B4E0A' : null,
+        border: isMobile ? '1px solid #2D3B4E14' : null,
         borderRadius: '32px',
         display: 'flex',
         flexDirection: 'row',
