@@ -3,6 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import {
   Dialog,
   DialogContent,
+  Box,
   Avatar,
   Typography,
   IconButton,
@@ -13,34 +14,12 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useCarouselModalStore } from '@/app/shared/stores/useStore';
 import type { FormattedTransfers } from '@/app/components/transfers-list/TransfersListTableBody';
 import { useStopPropagation } from '@/app/shared/hooks/useStopPropagation';
-
-interface TransfersDetailsType {
-  id: number;
-  from_location_title: string;
-  from_location_address: string;
-  from_datetime: string;
-  to_location_title: string;
-  to_location_address: string;
-  to_datetime: string;
-  passengers: number;
-  babyseats: number;
-  luggage: number;
-  hand_luggage: number;
-  flight_status: {
-    flight_number: string;
-    flight_time: string;
-    flight_status: string;
-  };
-  traveler: {
-    phone_number: string;
-    email: string;
-    country: string;
-  };
-}
+import GuestCard from '@/app/components/transfers-list/partials/GuestCard';
+import type { TransferDetailsItem } from '@/app/shared/types/transferDetails';
 
 interface CarouselModalProps {
   transfersList: FormattedTransfers[];
-  transfersDetails: TransfersDetailsType[];
+  transfersDetails: TransferDetailsItem[];
 }
 
 const CarouselModal = ({
@@ -72,7 +51,7 @@ const CarouselModal = ({
         onClose={handleClose}
         PaperProps={{
           sx: {
-            p: 3,
+            p: 4,
             my: 6,
             maxWidth: 'calc(100% - 208px)',
             height: '100%',
@@ -167,25 +146,22 @@ const CarouselModal = ({
           enableMouseEvents
         >
           {transfersList.map(({ transfers }) =>
-            transfers.map((item) => (
+            transfers.map((transfer) => (
               <DialogContent
-                key={item.id}
+                key={transfer.id}
                 sx={{
+                  p: 0,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
                   minHeight: '300px',
-                  justifyContent: 'center',
                 }}
               >
-                <Avatar
-                  src={item.traveler_photo}
-                  sx={{ width: 100, height: 100, mb: 2 }}
+                <GuestCard
+                  transfer={transfer}
+                  transferDetails={transfersDetails.find(
+                    (transfersDetail) => transfer.id === transfersDetail.id
+                  )}
                 />
-                <Typography variant="h6">{item.traveler_first_name}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Additional info about {item.traveler_last_name}
-                </Typography>
               </DialogContent>
             ))
           )}
