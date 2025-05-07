@@ -1,6 +1,7 @@
 'use client';
 
 import '@/lib/i18n';
+import { Fragment } from 'react';
 import { useEffect } from 'react';
 import { usePageStore } from '@/app/shared/stores/pageStore';
 import { useMediaQuery } from '@mui/material';
@@ -39,5 +40,5 @@ export default function ClientHome({
     setTransfersDetails,
   ]);
 
-  return <>{children}</>;
+  return <Fragment>{children}</Fragment>;
 }

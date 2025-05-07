@@ -1,5 +1,6 @@
 'use client';
 
+import { Fragment } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Typography } from '@mui/material';
 import { useGroupByDate } from '@/app/shared/hooks/useHooks';
@@ -21,20 +22,20 @@ export default function TransfersList() {
   const groupedTransfersList = useGroupByDate(transfersList);
 
   return (
-    <>
+    <Fragment>
       {!isMobile && (
-        <>
+        <Fragment>
           <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
             {t('common:transfer.plural')}
           </Typography>
           <TransfersListTable transfersList={groupedTransfersList} />
-        </>
+        </Fragment>
       )}
       {isMobile && <TransfersListMobile transfersList={groupedTransfersList} />}
       <CarouselModal
         transfersList={groupedTransfersList}
         transfersDetails={transfersDetails}
       />
-    </>
+    </Fragment>
   );
 }

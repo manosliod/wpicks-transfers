@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   TableRow,
   TableCell,
@@ -94,7 +94,7 @@ const TransfersListTableBody: React.FC<{
   return (
     <TableBody>
       {transfersList.map(({ formattedDate, transfers }, index) => (
-        <>
+        <Fragment key={`transfer-data-group-${index}`}>
           <TableRow key={`formatted-date-${index}`}>
             <CustomBodyCell
               colSpan={6}
@@ -171,7 +171,7 @@ const TransfersListTableBody: React.FC<{
               </CustomBodyCell>
             </TableRow>
           ))}
-        </>
+        </Fragment>
       ))}
     </TableBody>
   );

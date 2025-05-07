@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import {
   Dialog,
@@ -63,7 +63,7 @@ const CarouselModal: React.FC<CarouselModalProps> = ({
   const stopPropagationAndGoPrev = useStopPropagation(goPrev);
 
   return (
-    <>
+    <Fragment>
       {/* Modal Carousel */}
       <Dialog
         fullWidth
@@ -191,7 +191,7 @@ const CarouselModal: React.FC<CarouselModalProps> = ({
           )}
         </SwipeableViews>
       </Dialog>
-    </>
+    </Fragment>
   );
 };
 

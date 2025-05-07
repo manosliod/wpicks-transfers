@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import { Fragment } from 'react';
 import { t } from 'i18next';
 import { AppBar, Toolbar, IconButton, Box, Typography } from '@mui/material';
 import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
@@ -35,7 +35,7 @@ export default function BaseHeader() {
         }}
       >
         {isMobile && (
-          <>
+          <Fragment>
             <Box>
               <IconButton
                 size="medium"
@@ -56,11 +56,11 @@ export default function BaseHeader() {
                 {t('common:transfer.plural')} {t('transfers:list')}
               </Typography>
             </Box>
-          </>
+          </Fragment>
         )}
         <Box sx={{ justifyContent: 'flex-end' }}>
           {!isMobile ? (
-            <>
+            <Fragment>
               <IconButton
                 size="medium"
                 edge="end"
@@ -72,7 +72,7 @@ export default function BaseHeader() {
               <IconButton size="medium" edge="end" color="inherit">
                 <PowerSettingsNewIcon sx={{ color: '#2D3B4E80' }} />
               </IconButton>
-            </>
+            </Fragment>
           ) : (
             <IconButton size="medium" edge="end" color="inherit">
               <SearchIcon sx={{ color: '#2D3B4E80' }} />
