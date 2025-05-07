@@ -1,7 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
 import { useTranslation } from 'next-i18next';
-import { TransferItem } from '@/app/components/transfers-list/TransfersListTableBody';
 import type { TransferDetailsItem } from '@/app/shared/types/transferDetails';
 import { formatArrivalDepartureDate } from '@/app/shared/helpers/formatArrivalDepartureDate';
 import RouteDisplay from '@/app/components/transfers-list/partials/RouteDisplay';
@@ -9,14 +8,10 @@ import TravelDetails from '@/app/components/transfers-list/partials/TravelDetail
 import FlightDetails from '@/app/components/transfers-list/partials/FlightDetails';
 
 interface GuestCardProps {
-  transfer: TransferItem;
   transferDetails?: TransferDetailsItem;
 }
 
-export default function GuestTransfers({
-  transfer,
-  transferDetails,
-}: GuestCardProps) {
+export default function GuestTransfers({ transferDetails }: GuestCardProps) {
   const { t } = useTranslation();
   const formatedDate = formatArrivalDepartureDate(
     transferDetails?.from_datetime,
@@ -56,7 +51,6 @@ export default function GuestTransfers({
           babyseats={transferDetails?.babyseats}
           handLuggage={transferDetails?.hand_luggage}
           luggage={transferDetails?.luggage}
-          width={'100%'}
         />
         <FlightDetails
           flightNumber={transferDetails?.flight_status?.flight_number}
