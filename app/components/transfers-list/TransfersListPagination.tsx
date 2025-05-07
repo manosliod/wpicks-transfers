@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const CustomPagination = styled(Pagination)(({ theme }) => ({
+const CustomPagination = styled(Pagination)(() => ({
   '& .MuiPagination-ul': {
     margin: 0,
     padding: 0,
