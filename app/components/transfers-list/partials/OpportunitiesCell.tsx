@@ -31,9 +31,17 @@ export const OpportunitiesCell = ({
 
   if (!hasOpportunities) {
     return (
-      <OpportunityIcon key="dash">
-        <WpIcon name="dash" />
-      </OpportunityIcon>
+      <Box
+        className="oppertunity-box"
+        sx={{ display: 'flex', alignItems: 'center', gap: 1, ...sx }}
+      >
+        <OpportunityIcon key="dash">
+          <WpIcon name="dash" />
+        </OpportunityIcon>
+        {showOpportunityLabel && (
+          <Typography variant="subtitle1">{t('common:none')}</Typography>
+        )}
+      </Box>
     );
   }
 
