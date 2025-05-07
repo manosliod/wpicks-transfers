@@ -43,7 +43,9 @@ export default function BottomSheet() {
                   fontWeight={600}
                   sx={{ color: '#2D3B4E80', marginRight: '4px' }}
                 >
-                  {transfer?.traveler_first_name}'{t('guest:suffix')}
+                  {transfer?.traveler_first_name}
+                  {"'"}
+                  {t('guest:suffix')}
                 </Typography>
                 <Typography
                   variant="subtitle1"
