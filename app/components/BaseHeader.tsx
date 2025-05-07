@@ -8,10 +8,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import WpIcon from '@/app/components/WpIcon';
+import { useStopPropagation } from '@/app/shared/hooks/useStopPropagation';
 
 export default function BaseHeader() {
   const { isMobile } = usePageStore();
   const { openDrawer } = useSidebarStore();
+
+  const stopPropagationAndOpenDrawer = useStopPropagation(openDrawer);
 
   return (
     <AppBar
@@ -41,7 +44,7 @@ export default function BaseHeader() {
                 size="medium"
                 edge="end"
                 color="inherit"
-                onClick={openDrawer}
+                onClick={stopPropagationAndOpenDrawer}
                 sx={{ marginInlineEnd: '12px' }}
               >
                 <WpIcon name="menu" />

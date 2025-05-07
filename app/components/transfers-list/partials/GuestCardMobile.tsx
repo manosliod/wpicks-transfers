@@ -35,6 +35,9 @@ export default function GuestCardMobile({
         gap: '32px',
       }}
     >
+      <Typography variant="h6" fontWeight={600} sx={{ color: '#2D3B4E' }}>
+        {t('guest:your_guest')}
+      </Typography>
       <Card
         elevation={0}
         sx={{
