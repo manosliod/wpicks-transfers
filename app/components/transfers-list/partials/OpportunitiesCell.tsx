@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, SxProps } from '@mui/material';
 import WpIcon, { WpIconProps } from '@/app/components/WpIcon';
 import OpportunityIcon from '@/app/components/transfers-list/partials/OpportunityIcon';
 import type { TransferItem } from '@/app/components/transfers-list/TransfersListTableBody';
@@ -13,16 +13,21 @@ export const opportunityKeys = [
 ] as const;
 
 interface OpportunitiesProps {
-  transfer: TransferItem;
+  transfer?: TransferItem;
   showOpportunityLabel?: boolean;
+  sx?: SxProps;
 }
 
-export const Opportunities = ({
+export const OpportunitiesCell = ({
   transfer,
   showOpportunityLabel,
+  sx,
 }: OpportunitiesProps): ReactNode => {
   const { t } = useTranslation();
-  const hasOpportunities = opportunityKeys.some((key) => transfer[key]);
+
+  const hasOpportunities = transfer
+    ? opportunityKeys.some((key) => !!transfer[key])
+    : false;
 
   if (!hasOpportunities) {
     return (
@@ -33,9 +38,13 @@ export const Opportunities = ({
   }
 
   return opportunityKeys.map((key) =>
-    transfer[key] ? (
-      <Box key={key} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <OpportunityIcon>
+    transfer && transfer[key] ? (
+      <Box
+        key={key}
+        className="oppertunity-box"
+        sx={{ display: 'flex', alignItems: 'center', gap: 1, ...sx }}
+      >
+        <OpportunityIcon className="oppertunity-icon">
           <WpIcon name={key as WpIconProps['name']} />
         </OpportunityIcon>
         {showOpportunityLabel && (
@@ -48,4 +57,4 @@ export const Opportunities = ({
   );
 };
 
-export default Opportunities;
+export default OpportunitiesCell;
