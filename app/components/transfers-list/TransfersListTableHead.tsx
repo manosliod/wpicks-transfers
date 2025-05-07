@@ -108,7 +108,7 @@ export default function TransfersListTableHead() {
           width={'150px'}
         />
         <CustomHeaderCell
-          label={t('transfers:list_table.opportunities')}
+          label={t('transfers:list_table.opportunities.title')}
           width={'170px'}
           showNewBadge
         />

@@ -103,7 +103,9 @@ export default function TransfersListMobileCard({
           label={`${t('common:from')}/${t('common:to')}`}
           value={transfer?.location_title}
         />
-        <LabelValuePair label={`${t('transfers:list_table.opportunities')}`}>
+        <LabelValuePair
+          label={`${t('transfers:list_table.opportunities.title')}`}
+        >
           <Box sx={{ display: 'flex', gap: '12px' }}>
             <OpportunitiesCell transfer={transfer} />
           </Box>
