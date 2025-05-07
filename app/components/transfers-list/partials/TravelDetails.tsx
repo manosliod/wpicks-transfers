@@ -16,10 +16,14 @@ const TravelDetails = ({
   luggage,
   handLuggage,
 }: TravelDetailsProps) => {
-  // If all values are 0, don't render anything
-  if ([passengers, babyseats, luggage, handLuggage].every((item) => item === 0))
-    return null;
   const { isMobile } = usePageStore();
+
+  // If all values are 0, don't render anything
+  if (
+    [passengers, babyseats, luggage, handLuggage].every((item) => item === 0)
+  ) {
+    return null;
+  }
 
   const travelData = [
     { icon: 'passengers', value: passengers },
