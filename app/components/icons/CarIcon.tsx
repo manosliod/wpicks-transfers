@@ -1,4 +1,4 @@
-export function CarIcon() {
+export function BabyIcon() {
   return (
     <svg
       width="24"
