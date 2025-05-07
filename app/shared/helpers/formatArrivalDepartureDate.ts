@@ -1,9 +1,11 @@
 import { format, isToday, isTomorrow, parseISO } from 'date-fns';
 
 export function formatArrivalDepartureDate(
-  datetime: string,
+  datetime: string | undefined,
   t: (key: string) => string
 ) {
+  if (!datetime) return;
+
   const date = parseISO(datetime);
 
   if (isToday(date)) {
