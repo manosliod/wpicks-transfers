@@ -1,6 +1,4 @@
-# Project Name
-
-A brief description of your project. *(You can customize this section to reflect the purpose or features of your application.)*
+# Assignment
 
 ---
 
