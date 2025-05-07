@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Open_Sans } from 'next/font/google';
+import { Geist, Geist_Mono, Work_Sans } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-const openSans = Open_Sans({
-  variable: '--font-open-sans ',
+const workSans = Work_Sans({
+  variable: '--font-work-sans ',
   subsets: ['latin'],
 });
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from '@/theme';
+import theme from '@/app/theme/theme';
 
 export default function RootLayout({
   children,
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${openSans.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} ${workSans.variable}`}
       >
         <ThemeProvider theme={theme}>
           <CssBaseline />

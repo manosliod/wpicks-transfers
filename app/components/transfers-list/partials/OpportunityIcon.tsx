@@ -3,11 +3,16 @@ import { Box } from '@mui/material';
 
 type OpportunityIconProps = {
   children: ReactNode;
+  className?: string;
 };
 
-export default function OpportunityIcon({ children }: OpportunityIconProps) {
+export default function OpportunityIcon({
+  children,
+  className,
+}: OpportunityIconProps) {
   return (
     <Box
+      className={className}
       sx={{
         width: 38,
         height: 38,

@@ -16,12 +16,12 @@ interface CustomHeaderCellProps extends TableCellProps {
   width?: number | string;
 }
 
-const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
+const CustomHeaderCell = ({
   label,
   showNewBadge = false,
   width,
   ...props
-}) => {
+}: CustomHeaderCellProps) => {
   const { t } = useTranslation();
 
   return (
@@ -81,7 +81,7 @@ const CustomHeaderCell: React.FC<CustomHeaderCellProps> = ({
   );
 };
 
-const TransfersListTableHead: React.FC = () => {
+export default function TransfersListTableHead() {
   const { t } = useTranslation();
 
   return (
@@ -108,13 +108,11 @@ const TransfersListTableHead: React.FC = () => {
           width={'150px'}
         />
         <CustomHeaderCell
-          label={t('transfers:list_table.opportunities')}
+          label={t('transfers:list_table.opportunities.title')}
           width={'170px'}
           showNewBadge
         />
       </TableRow>
     </TableHead>
   );
-};
-
-export default TransfersListTableHead;
+}

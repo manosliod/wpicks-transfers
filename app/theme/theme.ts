@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'var(--font-open-sans), Arial, Helvetica, sans-serif',
+    fontFamily: 'var(--font-work-sans), sans-serif',
     allVariants: {
       fontSize: '15px',
       lineHeight: 1.2,

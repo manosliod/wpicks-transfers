@@ -4,9 +4,13 @@ import TransfersListTableHead from '@/app/components/transfers-list/TransfersLis
 import TransfersListTableBody from '@/app/components/transfers-list/TransfersListTableBody';
 import type { FormattedTransfers } from '@/app/components/transfers-list/TransfersListTableBody';
 
-const TransfersListTable: React.FC<{
-  formattedTransfersList: FormattedTransfers[];
-}> = ({ formattedTransfersList }) => {
+interface TransfersListTableProps {
+  transfersList: FormattedTransfers[];
+}
+
+export default function TransfersListTable({
+  transfersList,
+}: TransfersListTableProps) {
   return (
     <Box
       sx={{
@@ -24,12 +28,8 @@ const TransfersListTable: React.FC<{
         }}
       >
         <TransfersListTableHead />
-        <TransfersListTableBody
-          formattedTransfersList={formattedTransfersList}
-        />
+        <TransfersListTableBody transfersList={transfersList} />
       </Table>
     </Box>
   );
-};
-
-export default TransfersListTable;
+}

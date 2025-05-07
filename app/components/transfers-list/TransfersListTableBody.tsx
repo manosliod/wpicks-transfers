@@ -1,5 +1,4 @@
-import React from 'react';
-import { isToday, isTomorrow, parseISO } from 'date-fns';
+import React, { Fragment } from 'react';
 import {
   TableRow,
   TableCell,
@@ -9,22 +8,18 @@ import {
   TableCellProps,
   Avatar,
 } from '@mui/material';
-import { format } from 'date-fns';
 import { useTranslation } from 'next-i18next';
-import type { WpIconProps } from '@/app/components/WpIcon';
-import WpIcon from '@/app/components/WpIcon';
-import OpportunityIcon from '@/app/components/transfers-list/partials/OpportunityIcon';
+import { formatArrivalDepartureDate } from '@/app/shared/helpers/useHelpers';
+import OpportunitiesCell from '@/app/components/transfers-list/partials/OpportunitiesCell';
+import StatusBadge from '@/app/components/transfers-list/partials/StatusBadge';
+import { useCarouselModalStore } from '@/app/shared/stores/carouselModalStore';
 
 interface CustomBodyCellProps extends TableCellProps {
   label?: string;
   children?: React.ReactNode;
 }
 
-const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
-  label,
-  children,
-  ...props
-}) => {
+const CustomBodyCell = ({ label, children, ...props }: CustomBodyCellProps) => {
   return (
     <TableCell
       {...props}
@@ -66,7 +61,8 @@ const CustomBodyCell: React.FC<CustomBodyCellProps> = ({
   );
 };
 
-interface TransferItem {
+export interface TransferItem {
+  id: string;
   category: string;
   traveler_photo: string;
   traveler_first_name: string;
@@ -82,39 +78,23 @@ interface TransferItem {
 
 export interface FormattedTransfers {
   formattedDate: string;
-  items: TransferItem[];
+  transfers: TransferItem[];
 }
 
-const TransfersListTableBody: React.FC<{
-  formattedTransfersList: FormattedTransfers[];
-}> = ({ formattedTransfersList }) => {
+interface TransfersListTableBody {
+  transfersList: FormattedTransfers[];
+}
+
+export default function TransfersListTableBody({
+  transfersList,
+}: TransfersListTableBody) {
   const { t } = useTranslation();
-
-  type OpportunityKey =
-    | 'babies'
-    | 'return_transfer'
-    | 'early_checkin'
-    | 'late_checkout';
-  const opportunityKeys: OpportunityKey[] = [
-    'babies',
-    'return_transfer',
-    'early_checkin',
-    'late_checkout',
-  ];
-
-  const getWpIconName = (category: string): WpIconProps['name'] => {
-    const lowerCaseCategory = category.toLowerCase();
-    if (lowerCaseCategory === 'in city') {
-      return 'transfer' as WpIconProps['name'];
-    } else {
-      return lowerCaseCategory as WpIconProps['name'];
-    }
-  };
+  const { handleOpenById } = useCarouselModalStore();
 
   return (
     <TableBody>
-      {formattedTransfersList.map(({ formattedDate, items }, index) => (
-        <>
+      {transfersList.map(({ formattedDate, transfers }, index) => (
+        <Fragment key={`transfer-data-group-${index}`}>
           <TableRow key={`formatted-date-${index}`}>
             <CustomBodyCell
               colSpan={6}
@@ -136,10 +116,21 @@ const TransfersListTableBody: React.FC<{
             </CustomBodyCell>
           </TableRow>
 
-          {items.map((item, index) => (
-            <TableRow key={index}>
+          {transfers.map((item, index) => (
+            <TableRow
+              key={index}
+              onClick={() =>
+                handleOpenById(
+                  item.id,
+                  transfersList.flatMap((item) => item.transfers)
+                )
+              }
+            >
               <CustomBodyCell>
-                <WpIcon name={getWpIconName(item?.category || '')} />
+                <StatusBadge
+                  category={item?.category}
+                  sx={{ borderRadius: '50%', width: '38px', height: '38px' }}
+                />
               </CustomBodyCell>
               <CustomBodyCell>
                 <Box
@@ -170,38 +161,18 @@ const TransfersListTableBody: React.FC<{
               </CustomBodyCell>
               <CustomBodyCell label={item?.property_title} />
               <CustomBodyCell
-                label={
-                  isToday(parseISO(item?.datetime))
-                    ? `${t('common:common.today')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
-                    : isTomorrow(parseISO(item?.datetime))
-                      ? `${t('common:common.tomorrow')}, ${format(parseISO(item?.datetime), 'd MMMM, HH:mm')}`
-                      : format(parseISO(item?.datetime), 'iii, d MMMM')
-                }
+                label={formatArrivalDepartureDate(item?.datetime, t)}
               />
               <CustomBodyCell label={item?.location_title} />
               <CustomBodyCell>
                 <Box display="flex" gap={1}>
-                  {opportunityKeys.some((key) => item[key]) ? (
-                    opportunityKeys.map((key) =>
-                      item[key] ? (
-                        <OpportunityIcon key={key}>
-                          <WpIcon name={key as WpIconProps['name']} />
-                        </OpportunityIcon>
-                      ) : null
-                    )
-                  ) : (
-                    <OpportunityIcon key="dash">
-                      <WpIcon name="dash" />
-                    </OpportunityIcon>
-                  )}
+                  <OpportunitiesCell transfer={item} />
                 </Box>
               </CustomBodyCell>
             </TableRow>
           ))}
-        </>
+        </Fragment>
       ))}
     </TableBody>
   );
-};
-
-export default TransfersListTableBody;
+}

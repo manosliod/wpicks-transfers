@@ -5,7 +5,11 @@ import React from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useStopPropagation } from '@/app/shared/hooks/useHooks';
-import { usePageStore, useSidebarStore } from '@/app/shared/stores/useStore';
+import {
+  useCarouselModalStore,
+  usePageStore,
+  useSidebarStore,
+} from '@/app/shared/stores/useStore';
 
 import {
   Drawer,
@@ -23,12 +27,20 @@ import {
 } from '@mui/material';
 
 import WpIcon from '@/app/components/WpIcon';
-import WpLogo from '@/assets/logos/Logo.png';
+import WpLogo from '@/app/assets/logos/Logo.png';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
+import BaseHeader from '@/app/components/BaseHeader';
 
-export default function BaseLayout({ children }: any) {
+interface BaseLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function BaseLayout({ children }: BaseLayoutProps) {
   const { t } = useTranslation();
   const { isMobile } = usePageStore();
+  const { open } = useCarouselModalStore();
+  const { open: bottomSheetOpen } = useTransferBottomSheetStore();
 
   const {
     selectedKey,
@@ -47,6 +59,11 @@ export default function BaseLayout({ children }: any) {
     [isMobile, isDrawerOpen, isLocked]
   );
 
+  const toggleSideBar = () => {
+    if (isExpanded) closeSidebar();
+    else openSidebar();
+  };
+
   const openSidebar = () => {
     if (isMobile) openDrawer();
     else setLocked(true);
@@ -57,6 +74,8 @@ export default function BaseLayout({ children }: any) {
     else setLocked(false);
   };
 
+  const stopPropagationAndToggleDrawer = useStopPropagation(toggleSideBar);
+
   const menuItems = [
     {
       label: t('side_menu:live_view'),
@@ -64,7 +83,7 @@ export default function BaseLayout({ children }: any) {
     },
     {
       label: t('side_menu:scheduled'),
-      icon: <WpIcon name="calendar" />,
+      icon: <WpIcon name="scheduled" />,
     },
     {
       label: t('side_menu:statistics'),
@@ -81,7 +100,16 @@ export default function BaseLayout({ children }: any) {
   ];
 
   return (
-    <Box display="flex" height="100vh">
+    <Box
+      display="flex"
+      height="100%"
+      sx={{
+        filter:
+          open || bottomSheetOpen || (isMobile && isExpanded)
+            ? 'blur(10px)'
+            : null,
+      }}
+    >
       {/* Sidebar */}
       <Drawer
         variant={isMobile ? 'temporary' : 'permanent'}
@@ -100,6 +128,11 @@ export default function BaseLayout({ children }: any) {
             boxShadow: '0px 0px 8px rgba(45, 59, 78, 0.1)',
             border: 0,
             borderRight: '1px solid #2D3B4E1A',
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            backgroundColor: 'rgba(76, 88, 104, 0.9)',
           },
         }}
       >
@@ -220,7 +253,7 @@ export default function BaseLayout({ children }: any) {
           {!isMobile ? (
             <List>
               <ListItemButton
-                onClick={stopPropagationAndCloseDrawer}
+                onClick={stopPropagationAndToggleDrawer}
                 sx={{
                   padding: isExpanded ? '12px 16px' : '8px',
                   borderRadius: '4px',
@@ -256,7 +289,23 @@ export default function BaseLayout({ children }: any) {
               </ListItemButton>
             </List>
           ) : (
-            <Button variant="contained">{t('side_menu:logout')} </Button>
+            <Button
+              disableElevation
+              variant="contained"
+              sx={{
+                py: '20px',
+                color: '#2D3B4E',
+                backgroundColor: '#F4F5F6',
+              }}
+            >
+              <Typography
+                variant="body2"
+                textTransform="capitalize"
+                fontWeight={600}
+              >
+                {t('side_menu:logout')}
+              </Typography>
+            </Button>
           )}
         </Box>
       </Drawer>
@@ -267,17 +316,22 @@ export default function BaseLayout({ children }: any) {
         flexGrow={1}
         onClick={closeSidebar}
         sx={{
-          ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
-          transition: 'margin-left 0.3s',
-          padding: isMobile ? '16px 20px' : '36px 32px',
+          overflow: 'auto',
           width: !isMobile
             ? `calc(100vw - ${isExpanded ? '275px' : '92px'})`
             : null,
+          height: `calc(100dvh - ${isMobile ? '65px' : '66px'})`,
+          marginBlockStart: isMobile ? '65px' : '66px',
+          ml: isMobile ? 0 : isExpanded ? '260px' : '76px',
+          transition: 'margin-left 0.3s',
+          padding: isMobile ? '16px 20px' : '36px 32px',
         }}
       >
+        <BaseHeader />
+
         <Box
           sx={{
-            maxWidth: 'fit-content',
+            maxWidth: isMobile ? '320px' : 'fit-content',
             marginInline: 'auto',
             overflowX: 'auto',
           }}
