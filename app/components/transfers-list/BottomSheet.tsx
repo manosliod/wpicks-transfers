@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Sheet } from 'react-modal-sheet';
 import { useTransferBottomSheetStore } from '@/app/shared/stores/transferBottomSheetStore';
@@ -25,7 +25,6 @@ export default function BottomSheet() {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: '24px',
               }}
             >
               <Box
@@ -71,7 +70,7 @@ export default function BottomSheet() {
                 <CloseIcon />
               </IconButton>
             </Box>
-            <Box sx={{ px: '20px' }}>
+            <Box sx={{ px: '20px', py: '24px', overflow: 'auto' }}>
               <GuestTransfers transferDetails={transferDetails ?? undefined} />
               <Divider sx={{ my: '32px' }} />
               <GuestCardMobile
