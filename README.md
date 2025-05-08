@@ -7,9 +7,10 @@
 ### 1. Environment Variables
 
 First, head to
-link 1: https://eu.onetimesecret.com/secret/2ydymjw3pxelvnrbih9iamcl8k7k0q5, <br/>
-link 2: https://eu.onetimesecret.com/secret/vwmis7ii99bov2mcssgfyxh74yrxi01 (back up),<br/>
-link 3: https://eu.onetimesecret.com/secret/5rtbt9fq5q69oy3pnigyqr0ju1xkeya (back up),<br/>
+* [link 1](https://eu.onetimesecret.com/secret/2ydymjw3pxelvnrbih9iamcl8k7k0q5)
+* [link 2](https://eu.onetimesecret.com/secret/vwmis7ii99bov2mcssgfyxh74yrxi01) (back up)
+* [link 3](https://eu.onetimesecret.com/secret/5rtbt9fq5q69oy3pnigyqr0ju1xkeya) (back up)
+
 to copy the required environment variables and save them in a `.env` file at the root of the project.
 
 ### 2. Installation and Running
